@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./Warehouse.scss";
 import Arrows from "../../assets/icons/sort-24px.svg"
 
-const WarehouseList = () => {
+export default function WarehouseList() {
 
     return (
         <section className="warehouse">
@@ -63,4 +63,3 @@ const WarehouseList = () => {
     );
 };
 
-export default WarehouseList;
