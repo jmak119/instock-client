@@ -1,0 +1,58 @@
+.edit-inventory {
+  background-color: lightblue;
+  border-radius: 3px;
+  font-family: sans-serif;
+  padding: 0 28px;
+
+  height: 754px;
+  width: 343px;
+  margin-top: 136px;
+
+  /* @include tablet {
+    height: 606px;
+    width: 704px;
+    margin-top: 92px;
+  }
+
+  @include desktop {
+    height: 606px;
+    width: 1020px;
+    margin-top: 92px;
+  } */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__back-arrow {
+    height: 16px;
+    width: 16px;
+    margin-right: 12px;
+  }
+
+  &__title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
