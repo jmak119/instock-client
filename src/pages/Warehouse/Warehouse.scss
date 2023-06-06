@@ -1,9 +1,14 @@
-@use "./fonts" as *;
-@use "./mixins" as *;
-@use "./variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
-* {
-    body {
-        background-color: white;
+.warehouse {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &__header-container {
+        padding-top: 2rem;
     }
 }

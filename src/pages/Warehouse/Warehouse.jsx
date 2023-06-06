@@ -1,11 +1,11 @@
 import React from "react";
-import {useState, useEfect } from "react";
+import {useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Warehouse.scss";
 import Arrows from "../../assets/icons/sort-24px.svg"
 
-export default function WarehouseList() {
+export default function Warehouse() {
 
     return (
         <section className="warehouse">
