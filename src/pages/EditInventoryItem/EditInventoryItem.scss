@@ -1,14 +1,20 @@
-.edit-inventory {
-  background-color: lightblue;
-  border-radius: 3px;
-  font-family: sans-serif;
-  padding: 0 28px;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
-  height: 754px;
+.edit-inventory {
+  background-color: $white;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   width: 343px;
   margin-top: 136px;
+  margin-bottom: 96px;
 
-  /* @include tablet {
+  @include tablet {
     height: 606px;
     width: 704px;
     margin-top: 92px;
@@ -18,41 +24,116 @@
     height: 606px;
     width: 1020px;
     margin-top: 92px;
-  } */
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  }
 
   &__header {
     display: flex;
     align-items: center;
+    padding: 32px 28px 24px 28px;
+    border-bottom: 1px solid $cloud;
   }
 
   &__back-arrow {
-    height: 16px;
-    width: 16px;
+    height: 24px;
+    width: 24px;
     margin-right: 12px;
   }
 
   &__title {
     font-size: 28px;
-    line-height: 36px;
+    line-height: 53px;
   }
 
   &__form {
-    display: flex;
-    justify-content: space-between;
+    flex: 1;
   }
 
   &__details {
+    padding: 16px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    &--border {
+      border-bottom: 1px solid $cloud;
+    }
+  }
+
+  &__details-title {
+    margin: 16px 0 24px 0;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  &__input {
+    padding: 8px 16px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    border-radius: 20px;
+    border: 1px solid $cloud;
+    &--description {
+      height: 120px;
+      resize: none;
+    }
+  }
+
+  select {
+    /* Removes the old arrow */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Use the arrow from assets*/
+    background-image: url("../../assets/icons/arrow_drop_down-24px.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+  }
+
+  &__radio-container {
+    display: flex;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+
+  &__radio-block {
+    display: flex;
+    align-items: center;
+  }
+
+  &__radio {
+    margin-right: 8px;
+  }
+
+  &__instock-label {
+    margin-right: 89px;
+  }
+
+  &__button {
+    width: 139px;
+    height: 36px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+    &--cancel {
+      background-color: $white;
+      color: $slate;
+      border: 1px solid $cloud;
+    }
+    &--save {
+      background-color: $instock-indigo;
+      color: $white;
+    }
   }
 
   &__footer {
+    padding: 16px 24px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    background-color: $light-grey;
   }
 }

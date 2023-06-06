@@ -15,7 +15,7 @@ function EditInventoryList() {
       </div>
 
       <form className="edit-inventory__form">
-        <div className="edit-inventory__details">
+        <div className="edit-inventory__details edit-inventory__details--border">
           <p className="edit-inventory__details-title">Item Details</p>
           <label className="edit-inventory__label">
             Item Name
@@ -23,28 +23,65 @@ function EditInventoryList() {
           </label>
           <label className="edit-inventory__label">
             Description
-            <textarea className="edit-inventory__input" />
+            <textarea className="edit-inventory__input edit-inventory__input--description" />
           </label>
           <label className="edit-inventory__label">
             Category
-            <input type="text" className="edit-inventory__input" />
+            <select
+              type="text"
+              name="category"
+              className="edit-inventory__input"
+            >
+              <option value="choose">Category</option>
+            </select>
           </label>
         </div>
         <div className="edit-inventory__details">
           <p className="edit-inventory__details-title">Item Details</p>
           <label className="edit-inventory__label">
             Status
-            <input type="text" className="edit-inventory__input" />
+            <div className="edit-inventory__radio-container">
+              <div className="edit-inventory__radio-block">
+                <input
+                  type="radio"
+                  name="status"
+                  value="instock"
+                  className="edit-inventory__radio"
+                />
+                <label for="instock" className="edit-inventory__instock-label">
+                  In stock
+                </label>
+              </div>
+              <div className="edit-inventory__radio-block">
+                <input
+                  type="radio"
+                  name="status"
+                  value="outstock"
+                  className="edit-inventory__radio"
+                />
+                <label for="outstock">Out of stock</label>
+              </div>
+            </div>
           </label>
           <label className="edit-inventory__label">
             Warehouse
-            <input type="text" className="edit-inventory__input" />
+            <select
+              type="text"
+              name="warehouse"
+              className="edit-inventory__input"
+            >
+              <option value="choose">Warehouse</option>
+            </select>
           </label>
         </div>
       </form>
       <div className="edit-inventory__footer">
-        <button className="edit-inventory__save">Save</button>
-        <button className="edit-inventory__cancel">Cancel</button>
+        <button className="edit-inventory__button edit-inventory__button--cancel">
+          Cancel
+        </button>
+        <button className="edit-inventory__button edit-inventory__button--save">
+          Save
+        </button>
       </div>
     </div>
   );
