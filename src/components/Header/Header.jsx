@@ -11,7 +11,7 @@ function Header() {
   return (
     <>
       <section className="header">
-        <div className="page__section">
+        <div className="header__wrapper">
           <Link to="/" className="header__logo-link">
             <img className="header__logo" src={logo} alt="instock Logo" />
           </Link>

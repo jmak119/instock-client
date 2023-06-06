@@ -1,5 +1,6 @@
 import Header from "./components/Header/Header";
-import "./App.css";
+import Footer from "./components/Footer/Footer";
+import "./App.scss";
 import { HashRouter, Routes } from "react-router-dom/dist";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <HashRouter>
       <Header />
       <Routes></Routes>
+      <Footer />
     </HashRouter>
   );
 }
