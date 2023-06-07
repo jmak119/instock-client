@@ -55,17 +55,6 @@ export default function Warehouse() {
                     </div>
                 </div>
             </div>
-
-            <div className="warehouse__list">
-                <div className="warehouse__details-container">
-                    <div></div>
-                </div>
-            </div>
-
-
-
-
-
         </section>
     );
 };
