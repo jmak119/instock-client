@@ -60,7 +60,7 @@ export default function WarehouseList({ warehouseList }) {
                                     onClick={openModal}
                                     src={DeleteButton}
                                     className='warehouse-list__button warehouse-list__button-delete'
-                                // onClick={ openModal } 
+                    
                                 />
                                 <Modal isOpen={modal} onClose={closeModal} />
                                 <img
