@@ -1,10 +1,10 @@
 import "./App.css";
-import EditInventoryList from "./pages/EditInventoryItem/EditInventoryItem";
+import EditInventory from "./pages/EditInventory/EditInventory";
 
 function App() {
   return (
     <div className="app">
-      <EditInventoryList />
+      <EditInventory />
     </div>
   );
 }
