@@ -1,9 +1,140 @@
-@use "./fonts" as *;
-@use "./mixins" as *;
-@use "./variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
-* {
-    body {
-        background-color: white;
+.warehouse {
+    background-color: $white;
+    border-radius: .1875rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    @include tablet {
+        padding: 0;
+    }
+
+    @include desktop {
+        width: 63.75rem;
+        margin: 0 auto;
+    }
+
+    &__header-container {
+        padding: 2rem 1rem 1.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 2rem 2rem 1.5rem 2rem;
+        }
+    }
+
+    &__title {
+        padding-bottom: 1rem;
+        font-size: 1.75rem;
+
+        @include tablet {
+            padding-bottom: 0;
+        }
+    }
+
+    &__search-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        
+        @include tablet {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 55%;
+            gap: 1.5rem;
+            padding: 0;
+        }
+    }
+
+    &__searchbar-form {
+        width: 100%;
+        display: flex;
+        border-radius: 1.25rem;
+        border: .0625rem solid $cloud;
+        height: 2.25rem;
+    }
+
+    &__searchbar-input {
+        padding: .5rem 0 0.5rem 1rem;
+        border: none;
+        border-radius: inherit;
+        background-color: inherit;
+        line-height: 1.25rem;
+        width: 100%;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+
+    &__searchbar-icon {
+        background: url(../../assets/icons/search-24px.svg);
+        height: 2.25rem;
+        width: 2.25rem;
+        margin: 0 0.5rem 0 0;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border: none;
+    }
+
+    &__add-warehouse-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 2.25rem;
+        width: 100%;
+        border-radius: 1.25rem;
+        border: none;
+        font-weight: 600;
+        background-color: $instock-indigo;
+        color: $white;
+
+        &:hover {
+            background-color: $graphite;
+            cursor: pointer;
+        }
+    }
+
+    &__headings-container {
+        background-color: $light-grey;
+        
+    }
+
+    &__headings {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 2rem;
+            align-items: center;
+        }
+    }
+
+    &__titles {
+        display: flex;
+        flex-direction: row;
+        font-size: 12px;
+        line-height: 1.125rem;
+    }
+
+    &__heading-icon {
+        width: 1rem;
     }
 }

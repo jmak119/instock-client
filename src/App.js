@@ -1,23 +1,29 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Header from './components/Header/Header';
+import Warehouse from './pages/Warehouse/Warehouse';
+import Inventory from './pages/Inventory/Inventory';
+import EditInventory from './pages/EditInventory/EditInventory';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Warehouse />} />
+          {/* <Route path= "/warehouse:id" element={<WarehouseDetails />} /> */}
+          <Route path="/inventory" element={<Inventory />} />
+          {/* <Route path= "/inventory/:id" element={<InventoryDetails/>} /> */}
+          <Route path="/EditInventory/:id" element={<EditInventory />} />
+          {/* <Route path= "/Edit-Warehouse/:id" element={<EditWarehouse/>} /> */}
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
+
   );
 }
 
