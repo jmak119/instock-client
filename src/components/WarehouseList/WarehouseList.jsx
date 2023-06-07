@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Arrow from "../../assets/icons/chevron_right-24px.svg";
 import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
+import Modal from '../Modal/Modal';
 
 
 import "./WarehouseList.scss";
 
 
 export default function WarehouseList() {
+    const [modal, setModal] = useState(false);
 
+    const openModal = () => {
+      setModal(true);
+    };
+  
+    const closeModal = () => {
+      setModal(false);
+    };
+  
     // const openModal
   return (
 <>
@@ -47,13 +57,15 @@ export default function WarehouseList() {
 
         <div className="warehouse-list__buttons-container">
             <img 
+                onClick={openModal}
                 src= { DeleteButton } 
                 className='warehouse-list__button warehouse-list__button-delete' 
                 // onClick={ openModal } 
             />
+            <Modal isOpen={modal} onClose={closeModal} />
             <img 
                 src = { EditButton }
-                className='warehouse-list__button warehouse-list__button-edit'
+                className='warehouse-list__button warehouse-list__but  ton-edit'
             />
         </div>
     </div>
