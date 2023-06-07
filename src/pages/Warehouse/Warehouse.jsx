@@ -6,8 +6,26 @@ import "./Warehouse.scss";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Arrow from "../../assets/icons/chevron_right-24px.svg";
 import WarehouseList from "../../components/WarehouseList/WarehouseList"
+import { apiUrl } from "../../utilities/api";
+
 
 export default function Warehouse() {
+
+    const [ warehouseList, setWarehouseList ] = useState();
+
+    useEffect(() => {
+        axios
+            .get(`${apiUrl}/api/warehouses`)
+            .then((response) => {
+                setWarehouseList(response.data)
+            }).catch(err => {
+                console.error(err);
+            })
+    }, [])
+
+    if (!warehouseList) {
+        return <span>Loading...</span>
+    }
 
     return (
         <>
@@ -59,8 +77,8 @@ export default function Warehouse() {
                 </div>
             </div>
         </section >
-        <WarehouseList/>
-
+        <WarehouseList 
+            warehouseList = {warehouseList}/>
         </>
     );
 };
