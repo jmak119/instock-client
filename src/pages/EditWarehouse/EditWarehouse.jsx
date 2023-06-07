@@ -96,8 +96,10 @@ export default function EditWarehouse() {
       <div>
         <form className="edit-warehouse__form " onSubmit={handleOnSubmit}>
           <div className="edit-warehouse__display">
-            <div className="edit-warehouse__details edit-warehouse__details--border">
-              <p className="edit-warehouse__details-title">Warehouse Details</p>
+            <div className="edit-warehouse__details">
+              <h3 className="edit-warehouse__details-title">
+                Warehouse Details
+              </h3>
               <label className="edit-warehouse__label">
                 Warehouse Name
                 <input
@@ -133,51 +135,45 @@ export default function EditWarehouse() {
                 />
               </label>
             </div>
-
-            <div>
-              <div className="edit-warehouse__form">
-                <div className="edit-warehouse__details">
-                  <p className="edit-warehouse__details-title">
-                    Contact Details
-                  </p>
-                  <label className="edit-warehouse__label">
-                    Contact Name
-                    <input
-                      type="text"
-                      className="edit-warehouse__input"
-                      defaultValue={warehouseDetails?.contact_name}
-                    />
-                  </label>
-                  <label className="edit-warehouse__label">
-                    Position
-                    <input
-                      type="text"
-                      className="edit-warehouse__input"
-                      defaultValue={warehouseDetails?.contact_position}
-                    />
-                  </label>
-                  <label className="edit-warehouse__label">
-                    Phone Number
-                    <input
-                      type="tel"
-                      defaultValue={warehouseDetails?.contact_phone}
-                      onChange={handlePhoneNumberChange}
-                      className="edit-warehouse__input"
-                    />
-                    {phoneNumberError && <span>{phoneNumberError}</span>}
-                  </label>
-                  <label className="edit-warehouse__label">
-                    Email
-                    <input
-                      type="email"
-                      defaultValue={warehouseDetails?.contact_email}
-                      onChange={handleEmailChange}
-                      className="edit-warehouse__input"
-                    />
-                    {emailError && <span>{emailError}</span>}
-                  </label>
-                </div>
-              </div>
+            <div className="divider divider--vertical"></div>
+            <div className="edit-warehouse__details">
+              <h3 className="edit-warehouse__details-title">Contact Details</h3>
+              <label className="edit-warehouse__label">
+                Contact Name
+                <input
+                  type="text"
+                  className="edit-warehouse__input"
+                  defaultValue={warehouseDetails?.contact_name}
+                />
+              </label>
+              <label className="edit-warehouse__label">
+                Position
+                <input
+                  type="text"
+                  className="edit-warehouse__input"
+                  defaultValue={warehouseDetails?.contact_position}
+                />
+              </label>
+              <label className="edit-warehouse__label">
+                Phone Number
+                <input
+                  type="tel"
+                  defaultValue={warehouseDetails?.contact_phone}
+                  onChange={handlePhoneNumberChange}
+                  className="edit-warehouse__input"
+                />
+                {phoneNumberError && <span>{phoneNumberError}</span>}
+              </label>
+              <label className="edit-warehouse__label">
+                Email
+                <input
+                  type="email"
+                  defaultValue={warehouseDetails?.contact_email}
+                  onChange={handleEmailChange}
+                  className="edit-warehouse__input"
+                />
+                {emailError && <span>{emailError}</span>}
+              </label>
             </div>
           </div>
           <div className="edit-inventory__footer">

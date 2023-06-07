@@ -8,3 +8,11 @@
   font-family: "TitilliumWeb", sans-serif;
   box-sizing: border-box;
 }
+
+.divider {
+  &--vertical {
+    width: 1px;
+    align-self: stretch;
+    background-color: lightgrey;
+  }
+}
