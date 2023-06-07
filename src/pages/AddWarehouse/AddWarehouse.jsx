@@ -82,7 +82,10 @@ export default function AddWarehouse() {
         <button className="add-warehouse__button add-warehouse__button--cancel">
           Cancel
         </button>
-        <button className="add-warehouse__button add-warehouse__button--Add">
+        <button
+          type="submit"
+          className="add-warehouse__button add-warehouse__button--Add"
+        >
           + Add Warehouse
         </button>
       </div>
