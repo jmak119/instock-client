@@ -4,7 +4,24 @@
 @use "../../styles/partials/variables" as *;
 
 * {
-    body {
-        background-color: white;
+   .warehouse-details {
+    background-color: white;
+    // width: 300px;
+    height: 1709px;
+    
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+border-radius: 3px;
+margin: 16px;
+
+    &__top{
+        display: flex;
+        justify-content: space-between;
+        margin: 16px;
+        &--name{
+            display: flex;
+            gap: 3%;
+        }
+
     }
+   }
 }
