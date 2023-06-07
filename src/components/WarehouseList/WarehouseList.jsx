@@ -31,7 +31,7 @@ export default function WarehouseList({ warehouseList }) {
                                 <div className="warehouse-list__city-container">
                                     <h4 className="warehouse-list__info-heading">WAREHOUSE</h4>
                                     <div className="warehouse-list__city">
-                                        <Link to={"/"}>
+                                        <Link className='warehouse-list__link' to={"/warehouse/" + warehouse.id}>
                                             <p className="warehouse-list__city-name">{warehouse.warehouse_name}</p>
                                         </Link>
                                         <img src={Arrow} className="warehouse-list__icon-arrow" alt="arrow icon" />
