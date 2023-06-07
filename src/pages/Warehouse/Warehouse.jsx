@@ -3,10 +3,10 @@ import {useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Warehouse.scss";
-import Arrows from "../../assets/icons/sort-24px.svg"
+import sortIcon from "../../assets/icons/sort-24px.svg"
 
 export default function Warehouse() {
-
+    
     return (
         <section className="warehouse">
             <div className="warehouse__header-container">
@@ -26,32 +26,39 @@ export default function Warehouse() {
                         >
                         </button>
                     </form>
-                    <Link to="/" className="warehouse__add-warehouse-button">
+                    <button className="warehouse__add-warehouse-button">
                         + Add New Warehouse
-                    </Link>
+                    </button>
                 </div>
             </div>
+
             <div className="warehouse__headings-container">
                 <div className="warehouse__headings">
                     <div className="warehouse__titles warehouse__titles-warehouse">
                         <h4 className="warehouse__heading warehouse__heading-warehouse">WAREHOUSE</h4>
-                        <img src = { Arrows } className="warehouse__headings-icon" alt="arrows" />
+                        <img src = { sortIcon } className="warehouse__heading-icon" alt="sorting icon" />
                     </div>
                     <div className="warehouse__titles warehouse__titles-address">
                         <h4 className="warehouse__heading warehouse__heading-address">ADDRESS</h4>
-                        <img src = { Arrows } className="warehouse__headings-icon" alt="arrows" />
+                        <img src = { sortIcon } className="warehouse__heading-icon" alt="sorting icon" />
                     </div>
                     <div className="warehouse__titles warehouse__titles-contact-name">
                         <h4 className="warehouse__heading warehouse__heading-contact-name">CONTACT NAME</h4>
-                        <img src = { Arrows } className="warehouse__headings-icon" alt="arrows" />
+                        <img src = { sortIcon } className="warehouse__heading-icon" alt="sorting icon" />
                     </div>
                     <div className="warehouse__titles warehouse__titles-contact-info">
                         <h4 className="warehouse__heading warehouse__heading-contact-info">CONTACT INFORMATION</h4>
-                        <img src = { Arrows } className="warehouse__headings-icon" alt="arrows" />
+                        <img src = { sortIcon } className="warehouse__heading-icon" alt="sorting icon" />
                     </div>
                     <div className="warehouse__titles warehouse__titles-actions">
                         <h4 className="warehouse__heading warehouse__heading-actions">ACTIONS</h4>
                     </div>
+                </div>
+            </div>
+
+            <div className="warehouse__list">
+                <div className="warehouse__details-container">
+                    <div></div>
                 </div>
             </div>
 
