@@ -12,8 +12,6 @@ export default function WarehouseList() {
     // const openModal
     return (
         <>
-
-
             <div className="warehouse-list">
                 <div className="warehouse-list__container">
                     <div className="warehouse-list__details warehouse-list__details-location">
