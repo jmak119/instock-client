@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @mixin mobile() {
   @media screen and (max-width: $mobileMaxWidth) {
     @content;
@@ -15,3 +16,20 @@
     @content;
   }
 }
+=======
+@use "./fonts" as *;
+@use "./variables" as *;
+
+// breakpoints
+@mixin tablet {
+    @media screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+>>>>>>> develop

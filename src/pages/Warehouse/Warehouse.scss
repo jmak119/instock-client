@@ -1,0 +1,9 @@
+@use "./fonts" as *;
+@use "./mixins" as *;
+@use "./variables" as *;
+
+* {
+    body {
+        background-color: white;
+    }
+}
