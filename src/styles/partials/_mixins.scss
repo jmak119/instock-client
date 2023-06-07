@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+@mixin mobile() {
+  @media screen and (max-width: $mobileMaxWidth) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @media screen and (min-width: $tabletMinWidth) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: $desktopMinWidth) {
+    @content;
+  }
+}
+=======
 @use "./fonts" as *;
 @use "./variables" as *;
 
@@ -13,3 +32,4 @@
         @content;
     }
 }
+>>>>>>> develop
