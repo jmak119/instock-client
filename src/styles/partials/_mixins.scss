@@ -1,35 +1,15 @@
-<<<<<<< HEAD
-@mixin mobile() {
-  @media screen and (max-width: $mobileMaxWidth) {
-    @content;
-  }
-}
-
-@mixin tablet() {
-  @media screen and (min-width: $tabletMinWidth) {
-    @content;
-  }
-}
-
-@mixin desktop() {
-  @media screen and (min-width: $desktopMinWidth) {
-    @content;
-  }
-}
-=======
 @use "./fonts" as *;
 @use "./variables" as *;
 
 // breakpoints
 @mixin tablet {
-    @media screen and (min-width: $tablet-breakpoint) {
-        @content;
-    }
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
 }
 
 @mixin desktop {
-    @media screen and (min-width: $desktop-breakpoint) {
-        @content;
-    }
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
 }
->>>>>>> develop
