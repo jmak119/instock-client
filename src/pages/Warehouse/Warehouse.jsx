@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import "./Warehouse.scss";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Arrow from "../../assets/icons/chevron_right-24px.svg";
+import WarehouseList from "../../components/WarehouseList/WarehouseList"
 
 export default function Warehouse() {
 
     return (
+        <>
         <section className="warehouse">
             <div className="warehouse__header-container">
                 <h1 className="warehouse__title">Warehouses</h1>
@@ -57,6 +59,9 @@ export default function Warehouse() {
                 </div>
             </div>
         </section >
+        <WarehouseList/>
+
+        </>
     );
 };
 
