@@ -9,10 +9,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 1rem;
+    width: 100%;
+    margin: 0 auto;
 
     @include tablet {
         padding: 0;
+        width: 100%;
     }
 
     @include desktop {
@@ -127,12 +129,36 @@
         }
     }
 
+    &__titles-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2.5rem;
+        
+    }
+
     &__titles {
         display: flex;
         flex-direction: row;
-        font-size: 12px;
+        font-size: 0.75rem;
         line-height: 1.125rem;
+        // width: 20%;
     }
+
+    &__titles-warehouse, &__titles-address, &__titles-contact-name  {
+        width: 20%;
+    }
+
+    &__titles-contact-info {
+
+        width: 25%;
+    }
+
+    &__titles-actions {
+        width: 10%;
+        justify-content: flex-end;
+    }
+
 
     &__heading-icon {
         width: 1rem;
