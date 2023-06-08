@@ -5,8 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function EditWarehouse() {
-  const [loading, setLoading] = useState(true);
-  const [warehouseDetails, setWarehouseDetails] = useState(null);
+  const [warehouseDetails, setWarehouseDetails] = useState("");
   const params = useParams();
   const warehouseID = params.id || 1;
   const [emptyfield, setEmptyField] = useState(false);
@@ -17,11 +16,20 @@ export default function EditWarehouse() {
   const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
-    setLoading(true);
     axios
       .get(`http://localhost:8080/api/warehouses/${warehouseID}`)
       .then((response) => {
-        setWarehouseDetails(response.data);
+        console.log(response.data);
+        setWarehouseDetails({
+          // warehouse_name: response.data.warehouse_name,
+          // address: response.data.address,
+          // city: response.data.city,
+          // country: response.data.country,
+          // contact_name: response.data.contact_name,
+          // contact_position: response.data.contact_position,
+          // contact_phone: response.data.contact_phone,
+          // contact_email: response.data.contact_email,
+        });
       })
       .catch((error) => {
         alert(error);
@@ -48,6 +56,33 @@ export default function EditWarehouse() {
       setEmailError("");
     }
   }
+
+  const handleOnChange = (event) => {
+    const {
+      name,
+      value,
+      // warehouse_name,
+      // address,
+      // city,
+      // country,
+      // contact_name,
+      // contact_position,
+      // contact_phone,
+      // contact_email,
+    } = event.target;
+    setWarehouseDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+      // [warehouse_name]: value,
+      // [address]: value,
+      // [city]: value,
+      // [country]: value,
+      // [contact_name]: value,
+      // [contact_position]: value,
+      // [contact_phone]: value,
+      // [contact_email]: value,
+    }));
+  };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
@@ -82,6 +117,15 @@ export default function EditWarehouse() {
     return null;
   }
 
+  function testEmailFunction() {
+    handleEmailChange();
+    handleOnChange();
+  }
+  function testPhoneFunction() {
+    handlePhoneNumberChange();
+    handleOnChange();
+  }
+
   return (
     <div className="edit-warehouse">
       <div className="edit-warehouse__header">
@@ -104,34 +148,38 @@ export default function EditWarehouse() {
                 Warehouse Name
                 <input
                   type="text"
+                  onChange={handleOnChange}
                   className="edit-warehouse__input"
                   placeholder="Washington"
-                  defaultValue={warehouseDetails?.warehouse_name}
+                  Value={warehouseDetails.warehouse_name}
                 />
               </label>
               <label className="edit-warehouse__label">
                 Street Address
                 <input
                   type="text"
+                  onChange={handleOnChange}
                   className="edit-warehouse__input"
                   placeholder="300 Pearl Street SW"
-                  defaultValue={warehouseDetails?.address}
+                  Value={warehouseDetails.address}
                 />
               </label>
               <label className="edit-warehouse__label">
                 City
                 <input
                   type="text"
+                  onChange={handleOnChange}
                   className="edit-warehouse__input"
-                  defaultValue={warehouseDetails?.city}
+                  Value={warehouseDetails.city}
                 />
               </label>
               <label className="edit-warehouse__label">
                 Country
                 <input
+                  onChange={handleOnChange}
                   type="text"
                   className="edit-warehouse__input"
-                  defaultValue={warehouseDetails?.country}
+                  Value={warehouseDetails.country}
                 />
               </label>
             </div>
@@ -142,24 +190,26 @@ export default function EditWarehouse() {
                 Contact Name
                 <input
                   type="text"
+                  onChange={handleOnChange}
                   className="edit-warehouse__input"
-                  defaultValue={warehouseDetails?.contact_name}
+                  Value={warehouseDetails.contact_name}
                 />
               </label>
               <label className="edit-warehouse__label">
                 Position
                 <input
+                  onChange={handleOnChange}
                   type="text"
                   className="edit-warehouse__input"
-                  defaultValue={warehouseDetails?.contact_position}
+                  Value={warehouseDetails.contact_position}
                 />
               </label>
               <label className="edit-warehouse__label">
                 Phone Number
                 <input
                   type="tel"
-                  defaultValue={warehouseDetails?.contact_phone}
-                  onChange={handlePhoneNumberChange}
+                  Value={warehouseDetails.contact_phone}
+                  onChange={testPhoneFunction}
                   className="edit-warehouse__input"
                 />
                 {phoneNumberError && <span>{phoneNumberError}</span>}
@@ -168,8 +218,8 @@ export default function EditWarehouse() {
                 Email
                 <input
                   type="email"
-                  defaultValue={warehouseDetails?.contact_email}
-                  onChange={handleEmailChange}
+                  Value={warehouseDetails.contact_email}
+                  onChange={testEmailFunction}
                   className="edit-warehouse__input"
                 />
                 {emailError && <span>{emailError}</span>}
