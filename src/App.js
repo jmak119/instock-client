@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.scss";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -45,6 +46,16 @@ function App() {
         </div>
       </div>
     </BrowserRouter>
+=======
+import "./App.css";
+import EditInventory from "./pages/EditInventory/EditInventory";
+
+function App() {
+  return (
+    <div className="app">
+      <EditInventory />
+    </div>
+>>>>>>> edit-inventory-item
   );
 }
 

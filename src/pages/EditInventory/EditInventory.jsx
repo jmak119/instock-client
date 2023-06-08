@@ -105,7 +105,6 @@ export default function EditInventory() {
   const currentWarehouse = warehouseList.filter((warehouse) => {
     return warehouse.id === inventoryItemDetails.warehouse_id;
   })[0].warehouse_name;
-
   return (
     <div className="edit-inventory">
       <div className="edit-inventory__header">
