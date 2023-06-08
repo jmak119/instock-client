@@ -3,19 +3,20 @@ import "./AddInventory.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 export default function AddInventory() {
   const [loading, setLoading] = useState(true);
   const [inventoryItemDetails, setInventoryItemDetails] = useState({
     status: "In Stock",
+    quantity: 0,
   });
   const [warehouseList, setWarehouseList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const params = useParams();
-  const inventoryItemID = params.id || 1;
   const [emptyDescriptionError, setEmptyDescriptionError] = useState(false);
   const [emptyNameError, setEmptyNameError] = useState(false);
+  const [noCategoryError, setNoCategoryError] = useState(false);
+  const [noWarehouseError, setNoWarehouseError] = useState(false);
+  const [quantityError, setQuantityError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -47,37 +48,70 @@ export default function AddInventory() {
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
-    setInventoryItemDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
+    if (name === "status" && value === "Out of Stock") {
+      setInventoryItemDetails((prevDetails) => ({
+        ...prevDetails,
+        status: value,
+        quantity: 0,
+      }));
+    } else {
+      setInventoryItemDetails((prevDetails) => ({
+        ...prevDetails,
+        [name]: value,
+      }));
+    }
   };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
     setEmptyNameError(false);
     setEmptyDescriptionError(false);
-    if (!inventoryItemDetails.item_name || !inventoryItemDetails.description) {
+    setNoCategoryError(false);
+    setNoWarehouseError(false);
+    if (
+      !inventoryItemDetails.item_name ||
+      !inventoryItemDetails.description ||
+      !inventoryItemDetails.category ||
+      !inventoryItemDetails.warehouse
+    ) {
       if (!inventoryItemDetails.item_name) {
         setEmptyNameError(true);
       }
       if (!inventoryItemDetails.description) {
         setEmptyDescriptionError(true);
       }
-      return alert("Please do not leave any fields blank");
+      if (!inventoryItemDetails.category) {
+        setNoCategoryError(true);
+      }
+      if (!inventoryItemDetails.warehouse) {
+        setNoWarehouseError(true);
+      }
+      if (
+        inventoryItemDetails.quantity === 0 &&
+        inventoryItemDetails.status === "In Stock"
+      ) {
+        setQuantityError(true);
+      }
+
+      if (isNaN(Number(inventoryItemDetails.quantity))) {
+        setQuantityError(true);
+      }
+      return;
     }
 
     if (
       inventoryItemDetails.quantity === 0 &&
       inventoryItemDetails.status === "In Stock"
     ) {
-      return alert(`If item quantity is 0, set to "Out of Stock"`);
+      setQuantityError(true);
     }
+
+    if (typeof inventoryItemDetails.quantity !== "number") {
+      setQuantityError(true);
+    }
+
     axios
-      .put(
-        `http://localhost:8080/api/inventories/${inventoryItemID}`,
-        inventoryItemDetails
-      )
+      .post(`http://localhost:8080/api/inventories/`, inventoryItemDetails)
       .catch((error) => {
         alert(error);
       });
@@ -161,20 +195,37 @@ export default function AddInventory() {
             </label>
             <label className="add-inventory__label">
               Category
-              <select
-                type="text"
-                name="category"
-                onChange={handleOnChange}
-                placeholder="Please select"
-                className="add-inventory__input"
-              >
-                <option disabled selected value="">
-                  Please select
-                </option>
-                {categoryList.map((category) => {
-                  return <option value={category}>{category}</option>;
-                })}
-              </select>
+              <div className="add-inventory__container">
+                <select
+                  type="text"
+                  name="category"
+                  onChange={handleOnChange}
+                  className={`add-inventory__input 
+                  ${noCategoryError ? "add-inventory__input--error" : ""}
+                  ${
+                    !inventoryItemDetails.category
+                      ? "add-inventory__input--placeholder"
+                      : ""
+                  }`}
+                >
+                  <option value="">Please select</option>
+                  {categoryList.map((category) => {
+                    return <option value={category}>{category}</option>;
+                  })}
+                </select>
+                {noCategoryError && (
+                  <div className="add-inventory__error add-inventory__error--description">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="add-inventory__error-icon"
+                    />
+                    <p className="add-inventory__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
+              </div>
             </label>
           </div>
           <div className="add-inventory__details">
@@ -211,35 +262,72 @@ export default function AddInventory() {
             {inStock && (
               <label className="add-inventory__label">
                 Quantity
-                <input
-                  type="text"
-                  name="quantity"
-                  value={0}
-                  onChange={handleOnChange}
-                  className="add-inventory__input add-inventory__input--quantity"
-                />
+                <div className="add-inventory__container">
+                  <input
+                    type="text"
+                    name="quantity"
+                    value={inventoryItemDetails.quantity}
+                    onChange={handleOnChange}
+                    className={`${
+                      quantityError
+                        ? "add-inventory__input add-inventory__input--quantity add-inventory__input--error"
+                        : "add-inventory__input add-inventory__input--quantity"
+                    }`}
+                  />
+                  {quantityError && (
+                    <div className="add-inventory__error">
+                      <img
+                        src={ErrorIcon}
+                        alt="Error Icon"
+                        className="add-inventory__error-icon"
+                      />
+                      <p className="add-inventory__error-text">
+                        Quantity must be a number greater than 0
+                      </p>
+                    </div>
+                  )}
+                </div>
               </label>
             )}
             <label className="add-inventory__label">
               Warehouse
-              <select
-                type="text"
-                name="warehouse"
-                onChange={handleOnChange}
-                placeholder="Please select"
-                className="add-inventory__input"
-              >
-                <option disabled selected value="">
-                  Please select
-                </option>
-                {warehouseList.map((warehouse) => {
-                  return (
-                    <option value={warehouse.warehouse_name}>
-                      {warehouse.warehouse_name}
-                    </option>
-                  );
-                })}
-              </select>
+              <div className="add-inventory__container">
+                <select
+                  type="text"
+                  name="warehouse"
+                  onChange={handleOnChange}
+                  className={`add-inventory__input 
+                ${noWarehouseError ? "add-inventory__input--error" : ""}
+                ${
+                  !inventoryItemDetails.warehouse
+                    ? "add-inventory__input--placeholder"
+                    : ""
+                }`}
+                >
+                  <option value="" className="change">
+                    Please select
+                  </option>
+                  {warehouseList.map((warehouse) => {
+                    return (
+                      <option value={warehouse.id}>
+                        {warehouse.warehouse_name}
+                      </option>
+                    );
+                  })}
+                </select>
+                {noWarehouseError && (
+                  <div className="add-inventory__error">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="add-inventory__error-icon"
+                    />
+                    <p className="add-inventory__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
+              </div>
             </label>
           </div>
         </div>
@@ -249,9 +337,9 @@ export default function AddInventory() {
           </button>
           <button
             type="submit"
-            className="add-inventory__button add-inventory__button--save"
+            className="add-inventory__button add-inventory__button--add"
           >
-            Save
+            + Add Item
           </button>
         </div>
       </form>

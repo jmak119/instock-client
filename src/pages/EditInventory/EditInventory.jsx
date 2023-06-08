@@ -14,6 +14,9 @@ export default function EditInventory() {
   const inventoryItemID = params.id || 1;
   const [emptyDescriptionError, setEmptyDescriptionError] = useState(false);
   const [emptyNameError, setEmptyNameError] = useState(false);
+  const [quantityError, setQuantityError] = useState(false);
+  const [inStock, setInStock] = useState(null);
+  const [currentWarehouse, setCurrentWarehouse] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -59,8 +62,30 @@ export default function EditInventory() {
     });
   }, [inventoryItemID]);
 
+  useEffect(() => {
+    if (inventoryItemDetails && warehouseList.length > 0) {
+      setCurrentWarehouse(
+        warehouseList.find(
+          (warehouse) => warehouse.id === inventoryItemDetails.warehouse_id
+        ) || {}
+      );
+    }
+  }, [inventoryItemDetails, warehouseList]);
+
+  useEffect(() => {
+    if (inventoryItemDetails) {
+      setInStock(inventoryItemDetails.status === "In Stock");
+    }
+  }, [inventoryItemDetails]);
+
   const handleOnChange = (event) => {
     const { name, value } = event.target;
+    if (name === "warehouse_id") {
+      const selectedWarehouse = warehouseList.find(
+        (warehouse) => warehouse.id === Number(value)
+      );
+      setCurrentWarehouse(selectedWarehouse);
+    }
     setInventoryItemDetails((prevDetails) => ({
       ...prevDetails,
       [name]: value,
@@ -71,6 +96,7 @@ export default function EditInventory() {
     event.preventDefault();
     setEmptyNameError(false);
     setEmptyDescriptionError(false);
+
     if (!inventoryItemDetails.item_name || !inventoryItemDetails.description) {
       if (!inventoryItemDetails.item_name) {
         setEmptyNameError(true);
@@ -78,15 +104,30 @@ export default function EditInventory() {
       if (!inventoryItemDetails.description) {
         setEmptyDescriptionError(true);
       }
-      return alert("Please do not leave any fields blank");
+      if (
+        inventoryItemDetails.quantity === 0 &&
+        inventoryItemDetails.status === "In Stock"
+      ) {
+        setQuantityError(true);
+      }
+
+      if (typeof inventoryItemDetails.quantity !== "number") {
+        setQuantityError(true);
+      }
+      return;
     }
 
     if (
       inventoryItemDetails.quantity === 0 &&
       inventoryItemDetails.status === "In Stock"
     ) {
-      return alert(`If item quantity is 0, set to "Out of Stock"`);
+      setQuantityError(true);
     }
+
+    if (isNaN(Number(inventoryItemDetails.quantity))) {
+      setQuantityError(true);
+    }
+
     axios
       .put(
         `http://localhost:8080/api/inventories/${inventoryItemID}`,
@@ -97,14 +138,11 @@ export default function EditInventory() {
       });
   };
 
-  if (loading) {
+  if (loading || !currentWarehouse) {
     return <>Loading...</>;
   }
 
-  const inStock = inventoryItemDetails.status === "In Stock";
-  const currentWarehouse = warehouseList.filter((warehouse) => {
-    return warehouse.id === inventoryItemDetails.warehouse_id;
-  })[0].warehouse_name;
+  console.log(currentWarehouse);
   return (
     <div className="edit-inventory">
       <div className="edit-inventory__header">
@@ -232,7 +270,11 @@ export default function EditInventory() {
                   name="quantity"
                   value={inventoryItemDetails.quantity}
                   onChange={handleOnChange}
-                  className="edit-inventory__input edit-inventory__input--quantity"
+                  className={`${
+                    quantityError
+                      ? "add-inventory__input add-inventory__input--quantity add-inventory__input--error"
+                      : "add-inventory__input add-inventory__input--quantity"
+                  }`}
                 />
               </label>
             )}
@@ -240,14 +282,14 @@ export default function EditInventory() {
               Warehouse
               <select
                 type="text"
-                name="warehouse"
+                name="warehouse_id"
                 onChange={handleOnChange}
                 className="edit-inventory__input"
-                value={currentWarehouse}
+                value={currentWarehouse ? currentWarehouse.id : ""}
               >
                 {warehouseList.map((warehouse) => {
                   return (
-                    <option value={warehouse.warehouse_name}>
+                    <option key={warehouse.id} value={warehouse.id}>
                       {warehouse.warehouse_name}
                     </option>
                   );

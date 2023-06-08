@@ -105,6 +105,7 @@
     margin-bottom: 1rem;
     border-radius: 1.25rem;
     border: 0.0625rem solid $cloud;
+
     &--description {
       height: 7.5rem;
       resize: none;
@@ -124,6 +125,14 @@
       background-color: $white;
       outline: 0;
     }
+
+    &::placeholder {
+      color: $slate;
+    }
+
+    &--placeholder {
+      color: $slate;
+    }
   }
 
   &__container {
@@ -135,6 +144,7 @@
     display: flex;
     align-items: center;
     color: $red;
+    margin-bottom: 10px;
   }
 
   &__error-icon {
@@ -205,9 +215,12 @@
         margin-right: 16px;
       }
     }
-    &--save {
+    &--add {
       background-color: $instock-indigo;
       color: $white;
+      @include tablet {
+        width: 98px;
+      }
     }
   }
 }
