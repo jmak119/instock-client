@@ -11,20 +11,45 @@ import { apiUrl } from "../../utilities/api";
 
 export default function WarehouseList({ warehouseList }) {
 
+    console.log(warehouseList[0].warehouse_name);
+
+    // Modal start
     const [modal, setModal] = useState(false);
-    const openModal = () => {
+    const [modalWarehouseName, setModalWarehouseName] = useState('');
+    const [modalWarehouseId, setModalWarehouseId] = useState('');
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = (warehouseName, warehouseId) => {
         setModal(true);
+        setIsModalOpen(true);
+        setModalWarehouseName(warehouseName);
+        setModalWarehouseId(warehouseId);
     };
+      
     const closeModal = () => {
         setModal(false);
+        setIsModalOpen(false);
     };
-    // const openModal
+
+    // useEffect for modal
+    useEffect(() => {
+        const body = document.querySelector('body');
+        if (isModalOpen) {
+            body.classList.add('active-modal');
+        } else {
+            body.classList.remove('active-modal');
+        }
+    }, [isModalOpen]);
+    
+    
+    // Modal end
+    
     return (
         <>
             <div className="warehouse-list">
                 {warehouseList.map((warehouse) => {
                     return (
-                        < div className="warehouse-list__container" >
+                        <div className="warehouse-list__container" key={warehouse.id}>
                             <div className="warehouse-list__details warehouse-list__details-location">
                                 <div className="warehouse-list__city-container">
                                     <h4 className="warehouse-list__info-heading">WAREHOUSE</h4>
@@ -55,21 +80,20 @@ export default function WarehouseList({ warehouseList }) {
 
                             <div className="warehouse-list__buttons-container">
                                 <img
-                                    onClick={openModal}
+                                    onClick={() => openModal(warehouse.warehouse_name, warehouse.id)}
                                     src={DeleteButton}
-                                    className='warehouse-list__button warehouse-list__button-delete'
-                    
+                                    className="warehouse-list__button warehouse-list__button-delete"
                                 />
-                                <Modal isOpen={modal} onClose={closeModal} />
+                                <Modal isOpen={modal} onClose={closeModal} warehouseName={modalWarehouseName} warehouseId={modalWarehouseId} />
                                 <img
                                     src={EditButton}
-                                    className='warehouse-list__button warehouse-list__but  ton-edit'
+                                    className='warehouse-list__button warehouse-list__button-edit'
                                 />
                             </div>
                         </div>
-                    )
+                    );
                 })}
-            </div >
+            </div>
         </>
-    )
+    );
 }
