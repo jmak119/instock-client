@@ -7,7 +7,9 @@ import { useParams } from "react-router-dom";
 
 export default function AddInventory() {
   const [loading, setLoading] = useState(true);
-  const [inventoryItemDetails, setInventoryItemDetails] = useState(null);
+  const [inventoryItemDetails, setInventoryItemDetails] = useState({
+    status: "In Stock",
+  });
   const [warehouseList, setWarehouseList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const params = useParams();
@@ -17,22 +19,6 @@ export default function AddInventory() {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`http://localhost:8080/api/inventories/${inventoryItemID}`)
-      .then((response) => {
-        setInventoryItemDetails({
-          warehouse_id: response.data.warehouse_id,
-          item_name: response.data.item_name,
-          description: response.data.description,
-          category: response.data.category,
-          status: response.data.status,
-          quantity: response.data.quantity,
-        });
-      })
-      .catch((error) => {
-        alert(error);
-      });
-
     axios
       .get(`http://localhost:8080/api/inventories`)
       .then((response) => {
@@ -57,7 +43,7 @@ export default function AddInventory() {
       );
       setLoading(false);
     });
-  }, [inventoryItemID]);
+  }, []);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -102,46 +88,43 @@ export default function AddInventory() {
   }
 
   const inStock = inventoryItemDetails.status === "In Stock";
-  const currentWarehouse = warehouseList.filter((warehouse) => {
-    return warehouse.id === inventoryItemDetails.warehouse_id;
-  })[0].warehouse_name;
 
   return (
-    <div className="edit-inventory">
-      <div className="edit-inventory__header">
+    <div className="add-inventory">
+      <div className="add-inventory__header">
         <img
           src={BackArrow}
           alt="Back Arrow"
-          className="edit-inventory__back-arrow"
+          className="add-inventory__back-arrow"
         />
-        <p className="edit-inventory__title">Edit Inventory Item</p>
+        <p className="add-inventory__title">Add New Inventory Item</p>
       </div>
-      <form className="edit-inventory__form" onSubmit={handleOnSubmit}>
-        <div className="edit-inventory__form-inputs">
-          <div className="edit-inventory__details edit-inventory__details--border">
-            <p className="edit-inventory__details-title">Item Details</p>
-            <label className="edit-inventory__label">
+      <form className="add-inventory__form" onSubmit={handleOnSubmit}>
+        <div className="add-inventory__form-inputs">
+          <div className="add-inventory__details add-inventory__details--border">
+            <p className="add-inventory__details-title">Item Details</p>
+            <label className="add-inventory__label">
               Item Name
-              <div className="edit-inventory__container">
+              <div className="add-inventory__container">
                 <input
                   type="text"
                   name="item_name"
                   className={`${
                     emptyNameError
-                      ? "edit-inventory__input edit-inventory__input--error"
-                      : "edit-inventory__input"
+                      ? "add-inventory__input add-inventory__input--error"
+                      : "add-inventory__input"
                   }`}
-                  value={inventoryItemDetails.item_name}
                   onChange={handleOnChange}
+                  placeholder="Item Name"
                 />
                 {emptyNameError && (
-                  <div className="edit-inventory__error edit-inventory__error--name">
+                  <div className="add-inventory__error add-inventory__error--name">
                     <img
                       src={ErrorIcon}
                       alt="Error Icon"
-                      className="edit-inventory__error-icon"
+                      className="add-inventory__error-icon"
                     />
-                    <p className="edit-inventory__error-text">
+                    <p className="add-inventory__error-text">
                       This field is required
                     </p>
                   </div>
@@ -149,103 +132,106 @@ export default function AddInventory() {
               </div>
             </label>
 
-            <label className="edit-inventory__label">
+            <label className="add-inventory__label">
               Description
-              <div className="edit-inventory__container">
+              <div className="add-inventory__container">
                 <textarea
                   name="description"
-                  value={inventoryItemDetails.description}
                   onChange={handleOnChange}
+                  placeholder="Please enter a brief item description..."
                   className={`${
                     emptyDescriptionError
-                      ? "edit-inventory__input edit-inventory__input--description edit-inventory__input--error"
-                      : "edit-inventory__input edit-inventory__input--description"
+                      ? "add-inventory__input add-inventory__input--description add-inventory__input--error"
+                      : "add-inventory__input add-inventory__input--description"
                   }`}
                 />
                 {emptyDescriptionError && (
-                  <div className="edit-inventory__error edit-inventory__error--description">
+                  <div className="add-inventory__error add-inventory__error--description">
                     <img
                       src={ErrorIcon}
                       alt="Error Icon"
-                      className="edit-inventory__error-icon"
+                      className="add-inventory__error-icon"
                     />
-                    <p className="edit-inventory__error-text">
+                    <p className="add-inventory__error-text">
                       This field is required
                     </p>
                   </div>
                 )}
               </div>
             </label>
-            <label className="edit-inventory__label">
+            <label className="add-inventory__label">
               Category
               <select
                 type="text"
                 name="category"
-                value={inventoryItemDetails.category}
                 onChange={handleOnChange}
-                className="edit-inventory__input"
+                placeholder="Please select"
+                className="add-inventory__input"
               >
+                <option disabled selected value="">
+                  Please select
+                </option>
                 {categoryList.map((category) => {
                   return <option value={category}>{category}</option>;
                 })}
               </select>
             </label>
           </div>
-          <div className="edit-inventory__details">
-            <p className="edit-inventory__details-title">Item Availability</p>
-            <label className="edit-inventory__label">
+          <div className="add-inventory__details">
+            <p className="add-inventory__details-title">Item Availability</p>
+            <label className="add-inventory__label">
               Status
-              <div className="edit-inventory__radio-container">
-                <div className="edit-inventory__radio-block">
+              <div className="add-inventory__radio-container">
+                <div className="add-inventory__radio-block">
                   <input
                     type="radio"
                     name="status"
                     value="In Stock"
-                    className="edit-inventory__radio"
+                    className="add-inventory__radio"
                     checked={inventoryItemDetails.status === "In Stock"}
                     onChange={handleOnChange}
                   />
-                  <label
-                    htmlFor="instock"
-                    className="edit-inventory__instock-label"
-                  >
+                  <label className="add-inventory__instock-label">
                     In stock
                   </label>
                 </div>
-                <div className="edit-inventory__radio-block">
+                <div className="add-inventory__radio-block">
                   <input
                     type="radio"
                     name="status"
                     value="Out of Stock"
-                    className="edit-inventory__radio"
+                    className="add-inventory__radio"
                     checked={inventoryItemDetails.status === "Out of Stock"}
                     onChange={handleOnChange}
                   />
-                  <label htmlFor="outstock">Out of stock</label>
+                  <label>Out of stock</label>
                 </div>
               </div>
             </label>
             {inStock && (
-              <label className="edit-inventory__label">
+              <label className="add-inventory__label">
                 Quantity
                 <input
                   type="text"
                   name="quantity"
-                  value={inventoryItemDetails.quantity}
+                  value={0}
                   onChange={handleOnChange}
-                  className="edit-inventory__input edit-inventory__input--quantity"
+                  className="add-inventory__input add-inventory__input--quantity"
                 />
               </label>
             )}
-            <label className="edit-inventory__label">
+            <label className="add-inventory__label">
               Warehouse
               <select
                 type="text"
                 name="warehouse"
                 onChange={handleOnChange}
-                className="edit-inventory__input"
-                value={currentWarehouse}
+                placeholder="Please select"
+                className="add-inventory__input"
               >
+                <option disabled selected value="">
+                  Please select
+                </option>
                 {warehouseList.map((warehouse) => {
                   return (
                     <option value={warehouse.warehouse_name}>
@@ -257,13 +243,13 @@ export default function AddInventory() {
             </label>
           </div>
         </div>
-        <div className="edit-inventory__footer">
-          <button className="edit-inventory__button edit-inventory__button--cancel">
+        <div className="add-inventory__footer">
+          <button className="add-inventory__button add-inventory__button--cancel">
             Cancel
           </button>
           <button
             type="submit"
-            className="edit-inventory__button edit-inventory__button--save"
+            className="add-inventory__button add-inventory__button--save"
           >
             Save
           </button>
