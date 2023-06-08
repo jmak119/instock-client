@@ -11,8 +11,6 @@ import { apiUrl } from "../../utilities/api";
 
 export default function WarehouseList({ warehouseList }) {
 
-    console.log(warehouseList[0].warehouse_name);
-
     const [modal, setModal] = useState(false);
     const openModal = () => {
         setModal(true);
