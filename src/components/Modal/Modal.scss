@@ -8,8 +8,129 @@
    
 body.active-modal {
     overflow-y: hidden;
-    
+    overflow-x: hidden; 
 }
+
+
+
+
+
+.modal-content__mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.modal-content__text-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    gap: 25rem;
+    margin: 1rem;
+
+    &--text {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &--header{
+        font-size: 20px;
+        font-family: TitilliumWeb;
+        font-weight: 600;
+        font-size: 28px;
+    }
+
+    &--paragraph{
+        font-family: TitilliumWeb;
+        font-weight: 400;
+        font-size: 15px;
+    }
+}
+
+
+.modal-content {
+    position: absolute;
+    background-color: white;
+    height: 60vh;
+    width: 100vw;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    // padding: 100% 100%;
+    
+  
+//     height: 200px;
+font-family: sans-serif;
+    
+
+
+
+
+}
+
+.close-modal {
+    margin-top: 1rem;
+    margin-left: 23rem;
+}
+
+.modal__buttons {
+    display: flex;
+    justify-content: space-evenly;
+    
+
+    &--close{
+        background-color: $white;
+        width: 125px;
+        height: 36px;
+     
+        border: 1px solid #BDC5D5;
+        border-radius: 20px;
+        font-family: TitilliumWeb;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 20px;
+        color: $slate;
+        
+        
+        
+    }
+
+    &--delete{
+        background-color: $red;
+        color: $white;
+        width: 125px;
+        height: 36px;
+        border: 1px solid #BDC5D5;
+        border-radius: 20px;
+        font-family: TitilliumWeb;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 20px;
+        
+        
+
+    }
+}
+}
+
+
+
+
+@include tablet {
+
+    .modal-content__text-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+        gap: 1rem;
+        margin: 1rem;
+    }
+
 
 .btn-modal {
     padding: 10px 20px;
@@ -33,7 +154,7 @@ body.active-modal {
 
 
 .overlay {
-    background: rgba(49,49,49,0.8);
+    background: rgba(49,49,49,0.2);
 }
 .modal-content {
     position: absolute;
@@ -43,13 +164,13 @@ body.active-modal {
     transform: translate(-50%, -50%);
     line-height: 1.4;
     background: #f1f1f1;
-    padding: 14px 28px;
+    padding: 20px 30px;
     border-radius: 3px;
-    max-width: 672px;
+    max-width: 700px;
     min-width: 300px;
-    height: 200px;
+    height: 225px;
     font-family: sans-serif;
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 .close-modal {
@@ -65,23 +186,23 @@ body.active-modal {
     gap: 2.1%;
 
     &--close{
-        background-color: $cloud;
-        width: 71px;
-        height: 38px;
-        border-radius: 20px;
+        width: 80px;
+        
+        
+        
+        
     }
 
     &--delete{
-        background-color: $red;
-        color: $white;
-        width: 71px;
-        height: 38px;
-        border-radius: 20px;
+        width: 80px;
+        
 
     }
 }
+
+
+
+
+
 }
-
-
-
 
