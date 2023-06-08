@@ -1,7 +1,18 @@
+@import "../../styles/partials/global";
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/fonts";
+@import "../../styles/partials/variables";
+
 .footer {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 96px;
+  @include tablet {
+    height: 98px;
+  }
+  @include desktop {
+    height: 114px;
+  }
 }
