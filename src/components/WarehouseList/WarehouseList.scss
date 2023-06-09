@@ -35,6 +35,12 @@
             height: 4.75rem;
             align-items: center;
         }
+
+        @include desktop {
+            &:hover {
+                background-color: $light-grey;
+            }
+        }
     }
 
     &__details {

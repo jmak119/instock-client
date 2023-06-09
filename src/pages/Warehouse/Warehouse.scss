@@ -126,7 +126,6 @@
 
     &__headings-container {
         background-color: $light-grey;
-
     }
 
     &__headings {
@@ -140,14 +139,6 @@
             height: 2rem;
             align-items: center;
         }
-    }
-
-    &__titles-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 2.5rem;
-
     }
 
     &__titles {
@@ -164,7 +155,6 @@
     }
 
     &__titles-contact-info {
-
         width: 25%;
     }
 

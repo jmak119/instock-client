@@ -52,30 +52,64 @@ export default function Inventory() {
           </div>
         </div>
 
+        {/* tablet/desktop heading bar */}
+
         <div className="inventory__headings-container">
           <div className="inventory__headings">
-            <div className="inventory__titles inventory__titles-inventory">
-              <h4 className="inventory__heading inventory__heading-inventory">INVENTORY</h4>
-              <img src={sortIcon} className="inventory__heading-icon" alt="sorting icon" />
+            <div className="inventory__titles inventory__titles-inventory-name">
+              <h4 className="inventory__heading inventory__heading-inventory-name">
+                INVENTORY NAME
+              </h4>
+              <img
+                src={sortIcon}
+                className="inventory__heading-icon"
+                alt="sorting icon"
+              />
             </div>
             <div className="inventory__titles inventory__titles-category">
-              <h4 className="inventory__heading inventory__heading-category">CATEGORY</h4>
-              <img src={sortIcon} className="inventory__heading-icon" alt="sorting icon" />
+              <h4 className="inventory__heading inventory__heading-category">
+                CATEGORY
+              </h4>
+              <img
+                src={sortIcon}
+                className="inventory__heading-icon"
+                alt="sorting icon"
+              />
             </div>
             <div className="inventory__titles inventory__titles-status">
-              <h4 className="inventory__heading inventory__heading-contact-name">STATUS</h4>
-              <img src={sortIcon} className="inventory__heading-icon" alt="sorting icon" />
+              <h4 className="inventory__heading inventory__heading-status">
+                STATUS
+              </h4>
+              <img
+                src={sortIcon}
+                className="inventory__heading-icon"
+                alt="sorting icon"
+              />
             </div>
             <div className="inventory__titles inventory__titles-qty">
-              <h4 className="inventory__heading inventory__heading-qty">QTY</h4>
-              <img src={sortIcon} className="inventory__heading-icon" alt="sorting icon" />
+              <h4 className="inventory__heading inventory__heading-qty">
+                QTY
+              </h4>
+              <img
+                src={sortIcon}
+                className="inventory__heading-icon"
+                alt="sorting icon"
+              />
             </div>
             <div className="inventory__titles inventory__titles-warehouse">
-              <h4 className="inventory__heading inventory__heading-warehouse">WAREHOUSE</h4>
-              <img src={sortIcon} className="inventory__heading-icon" alt="sorting icon" />
+              <h4 className="inventory__heading inventory__heading-warehouse">
+                WAREHOUSE
+              </h4>
+              <img
+                src={sortIcon}
+                className="inventory__heading-icon"
+                alt="sorting icon"
+              />
             </div>
             <div className="inventory__titles inventory__titles-actions">
-              <h4 className="inventory__heading inventory__heading-warehouse">ACTIONS</h4>
+              <h4 className="inventory__heading inventory__heading-actions">
+                ACTIONS
+              </h4>
             </div>
           </div>
         </div>
