@@ -26,14 +26,14 @@
         height: 196px;
         position: relative;
         text-overflow: clip;
-        // background-color: aqua;
 
         @include tablet {
             flex-direction: row;
             flex-wrap: nowrap;
             justify-content: space-between;
             padding: 1rem 2rem;
-            height: auto;
+            height: 4.75rem;
+            align-items: center;
         }
     }
 
@@ -49,13 +49,12 @@
             gap: 0;
             padding: 0;
         }
-        // background-color: red;
     }
 
-    &__details-location, &__details-contact {
+    &__details-location,
+    &__details-contact {
         display: flex;
         flex-direction: column;
-        // width: 50%;
         gap: 1rem;
 
         @include tablet {
@@ -68,12 +67,6 @@
             align-items: center;
             width: 40%;
         }
-    }
-
-    &__city-container, &__address-container  {
-        display: flex;
-        flex-direction: column;
-        
     }
 
     &__info-heading {
@@ -92,19 +85,24 @@
         flex-direction: row;
         font-size: 0.75rem;
         line-height: 1.125rem;
-        // width: 6.25rem;
-        // flex-grow: 1;
-        // gap: 2rem;
-        // justify-content: space-between;
     }
 
-    &__city-container, &__address-container, &__contact-container {
+    &__city-container,
+    &__address-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__city-container,
+    &__address-container,
+    &__contact-container {
         padding-bottom: 1rem;
         width: 50%;
+
         @include tablet {
             width: 20%;
             padding-bottom: 0;
-        }  
+        }
     }
 
     &__city {
@@ -125,6 +123,10 @@
     &__address-container {
         padding-right: 1rem;
         padding-bottom: 2rem;
+
+        @include tablet {
+            padding: 0;
+        }
     }
 
     &__address {
@@ -146,11 +148,14 @@
         // width: 100%;
         left: 1rem;
         right: 1rem;
-    
+
         @include tablet {
             width: 10%;
             justify-content: flex-end;
             position: relative;
+            bottom: 0rem;
+            left: 0.25rem;
+            gap: 1rem;
         }
     }
 

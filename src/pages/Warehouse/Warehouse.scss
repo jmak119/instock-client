@@ -26,7 +26,7 @@
         padding: 2rem 1rem 1.5rem 1rem;
         display: flex;
         flex-direction: column;
-        
+
         @include tablet {
             flex-direction: row;
             justify-content: space-between;
@@ -51,7 +51,7 @@
         justify-content: center;
         align-items: center;
         gap: 1rem;
-        
+
         @include tablet {
             flex-direction: row;
             flex-wrap: nowrap;
@@ -113,7 +113,7 @@
 
     &__headings-container {
         background-color: $light-grey;
-        
+
     }
 
     &__headings {
@@ -134,7 +134,7 @@
         flex-direction: row;
         justify-content: space-between;
         gap: 2.5rem;
-        
+
     }
 
     &__titles {
@@ -142,10 +142,11 @@
         flex-direction: row;
         font-size: 0.75rem;
         line-height: 1.125rem;
-        // width: 20%;
     }
 
-    &__titles-warehouse, &__titles-address, &__titles-contact-name  {
+    &__titles-warehouse,
+    &__titles-address,
+    &__titles-contact-name {
         width: 20%;
     }
 
@@ -158,7 +159,6 @@
         width: 10%;
         justify-content: flex-end;
     }
-
 
     &__heading-icon {
         width: 1rem;
