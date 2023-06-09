@@ -33,7 +33,7 @@ export default function EditInventory() {
         });
       })
       .catch((error) => {
-        alert(error);
+        console.log(error);
       });
 
     axios
@@ -48,7 +48,7 @@ export default function EditInventory() {
         setCategoryList(categoryArray);
       })
       .catch((error) => {
-        alert(error);
+        console.log(error);
       });
 
     axios.get(`http://localhost:8080/api/warehouses`).then((response) => {
@@ -111,7 +111,7 @@ export default function EditInventory() {
         setQuantityError(true);
       }
 
-      if (typeof inventoryItemDetails.quantity !== "number") {
+      if (isNaN(Number(inventoryItemDetails.quantity))) {
         setQuantityError(true);
       }
       return;
@@ -134,7 +134,7 @@ export default function EditInventory() {
         inventoryItemDetails
       )
       .catch((error) => {
-        alert(error);
+        console.log(error);
       });
   };
 

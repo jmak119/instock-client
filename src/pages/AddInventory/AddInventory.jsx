@@ -32,7 +32,7 @@ export default function AddInventory() {
         setCategoryList(categoryArray);
       })
       .catch((error) => {
-        alert(error);
+        console.log(error);
       });
 
     axios.get(`http://localhost:8080/api/warehouses`).then((response) => {
@@ -72,7 +72,7 @@ export default function AddInventory() {
       !inventoryItemDetails.item_name ||
       !inventoryItemDetails.description ||
       !inventoryItemDetails.category ||
-      !inventoryItemDetails.warehouse
+      !inventoryItemDetails.warehouse_id
     ) {
       if (!inventoryItemDetails.item_name) {
         setEmptyNameError(true);
@@ -83,7 +83,7 @@ export default function AddInventory() {
       if (!inventoryItemDetails.category) {
         setNoCategoryError(true);
       }
-      if (!inventoryItemDetails.warehouse) {
+      if (!inventoryItemDetails.warehouse_id) {
         setNoWarehouseError(true);
       }
       if (
@@ -106,14 +106,15 @@ export default function AddInventory() {
       setQuantityError(true);
     }
 
-    if (typeof inventoryItemDetails.quantity !== "number") {
+    if (isNaN(Number(inventoryItemDetails.quantity))) {
       setQuantityError(true);
     }
-
+    console.log(inventoryItemDetails);
     axios
       .post(`http://localhost:8080/api/inventories/`, inventoryItemDetails)
       .catch((error) => {
-        alert(error);
+        console.log(error);
+        console.log(JSON.stringify(inventoryItemDetails));
       });
   };
 
@@ -294,7 +295,7 @@ export default function AddInventory() {
               <div className="add-inventory__container">
                 <select
                   type="text"
-                  name="warehouse"
+                  name="warehouse_id"
                   onChange={handleOnChange}
                   className={`add-inventory__input 
                 ${noWarehouseError ? "add-inventory__input--error" : ""}
