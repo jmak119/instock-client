@@ -5,20 +5,15 @@
 
 * {
   .warehouse-details {
-    background-color: white;
-    width: 300px;
-    height: 100%;
-    display: n;
-
-    @include tablet {
-      width: 704px;
-    }
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    background-color: $white;
 
     @include desktop {
-        width: 1020px;
+      width: 1020px;
     }
-
-    border-radius: 3px;
 
     &__top {
       display: flex;
@@ -39,6 +34,11 @@
         gap: 5%;
       }
     }
+  }
+
+  .BLOCK {
+    display: flex;
+    flex-direction: column;
   }
 
   //    Text starts

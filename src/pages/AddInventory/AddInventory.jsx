@@ -3,6 +3,7 @@ import "./AddInventory.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddInventory() {
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,7 @@ export default function AddInventory() {
   const [noCategoryError, setNoCategoryError] = useState(false);
   const [noWarehouseError, setNoWarehouseError] = useState(false);
   const [quantityError, setQuantityError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -116,6 +118,8 @@ export default function AddInventory() {
         console.log(error);
         console.log(JSON.stringify(inventoryItemDetails));
       });
+
+    navigate("/inventory");
   };
 
   if (loading) {

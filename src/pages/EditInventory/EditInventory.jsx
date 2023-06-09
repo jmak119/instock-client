@@ -4,9 +4,9 @@ import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function EditInventory() {
-  const [loading, setLoading] = useState(true);
   const [inventoryItemDetails, setInventoryItemDetails] = useState(null);
   const [warehouseList, setWarehouseList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
@@ -17,9 +17,9 @@ export default function EditInventory() {
   const [quantityError, setQuantityError] = useState(false);
   const [inStock, setInStock] = useState(null);
   const [currentWarehouse, setCurrentWarehouse] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
     axios
       .get(`http://localhost:8080/api/inventories/${inventoryItemID}`)
       .then((response) => {
@@ -58,7 +58,6 @@ export default function EditInventory() {
           warehouse_name: warehouse.warehouse_name,
         }))
       );
-      setLoading(false);
     });
   }, [inventoryItemID]);
 
@@ -136,13 +135,13 @@ export default function EditInventory() {
       .catch((error) => {
         console.log(error);
       });
+    navigate("/inventory");
   };
 
-  if (loading || !currentWarehouse) {
+  if (!inventoryItemDetails || !currentWarehouse || !warehouseList) {
     return <>Loading...</>;
   }
 
-  console.log(currentWarehouse);
   return (
     <div className="edit-inventory">
       <div className="edit-inventory__header">
