@@ -13,3 +13,10 @@
     @content;
   }
 }
+
+
+@mixin phone {
+  @media screen and (max-width: $tablet-breakpoint) {
+    @content;
+  }
+}
