@@ -41,11 +41,11 @@ export default function WarehouseList({ warehouseList }) {
         }
     }, [isModalOpen]);
 
-
     // Modal end
 
     return (
         <>
+            <Modal isOpen={modal} onClose={closeModal} warehouseName={modalWarehouseName} warehouseId={modalWarehouseId} />
             <div className="warehouse-list">
                 {warehouseList.map((warehouse) => {
                     return (
@@ -80,7 +80,7 @@ export default function WarehouseList({ warehouseList }) {
                                     src={DeleteButton}
                                     className="warehouse-list__button"
                                 />
-                                <Modal isOpen={modal} onClose={closeModal} warehouseName={modalWarehouseName} warehouseId={modalWarehouseId} />
+                                
                                 <Link className='warehouse-list__link' to={`/warehouse/edit/${warehouse.id}`}>
                                     <img
                                         src={EditButton}
