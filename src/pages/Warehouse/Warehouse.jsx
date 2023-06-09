@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Warehouse.scss";
 import sortIcon from "../../assets/icons/sort-24px.svg";
@@ -27,7 +27,6 @@ export default function Warehouse() {
     return <span>Loading...</span>;
   }
   return (
-
     <section className="warehouse">
       <div className="warehouse__header-container">
         <h1 className="warehouse__title">Warehouses</h1>
@@ -45,7 +44,10 @@ export default function Warehouse() {
               className="warehouse__searchbar-icon"
             ></button>
           </form>
-          <Link className="warehouse__add-warehouse-button" to= {`/warehouse/add`}>
+          <Link
+            className="warehouse__add-warehouse-button"
+            to={`/warehouse/add`}
+          >
             + Add New Warehouse
           </Link>
         </div>

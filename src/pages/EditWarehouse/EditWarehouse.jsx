@@ -36,14 +36,14 @@ export default function EditWarehouse() {
     event.preventDefault();
     setEmptyField(false);
     if (
-      !warehouseDetails.warehouse_name ||
-      !warehouseDetails.address ||
-      !warehouseDetails.city ||
-      !warehouseDetails.country ||
-      !warehouseDetails.contact_name ||
-      !warehouseDetails.contact_position ||
-      !warehouseDetails.contact_phone ||
-      !warehouseDetails.contact_email
+      warehouseDetails.warehouse_name === "" ||
+      warehouseDetails.address === "" ||
+      warehouseDetails.city === "" ||
+      warehouseDetails.country === "" ||
+      warehouseDetails.contact_name === "" ||
+      warehouseDetails.contact_position === "" ||
+      warehouseDetails.contact_phone === "" ||
+      warehouseDetails.contact_email === ""
     ) {
       setEmptyField(true);
       return alert("Please do not leave any fields blank");

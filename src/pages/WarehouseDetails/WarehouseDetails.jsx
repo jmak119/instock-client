@@ -72,28 +72,26 @@ export default function WarehouseDetails() {
             {warehouseDetails.city}
           </p>
         </div>
-        <div className="warehouse-details__middle--container">
-          <div className="warehouse-details__middle--container--contact">
-            <p className="warehouse-details__middle-name">CONTACT NAME:</p>
-            <p className="warehouse-details__middle-name-item">
-              {warehouseDetails.contact_name}
-            </p>
-            <p className="warehouse-details__middle-name-item">
-              {warehouseDetails.contact_position}
-            </p>
-          </div>
-          <div className="warehouse-details__middle--container--contact">
-            <p className="warehouse-details__middle-name">
-              CONTACT INFORMATION:
-            </p>
-            <p className="warehouse-details__middle-name-item">
-              {warehouseDetails.contact_phone}
-            </p>
-            <p className="warehouse-details__middle-name-item">
-              {warehouseDetails.contact_email}
-            </p>
-          </div>
+        {/* <div className="warehouse-details__middle--container"> */}
+        <div className="warehouse-details__middle--container--contact">
+          <p className="warehouse-details__middle-name">CONTACT NAME:</p>
+          <p className="warehouse-details__middle-name-item">
+            {warehouseDetails.contact_name}
+          </p>
+          <p className="warehouse-details__middle-name-item">
+            {warehouseDetails.contact_position}
+          </p>
         </div>
+        <div className="warehouse-details__middle--container--contact">
+          <p className="warehouse-details__middle-name">CONTACT INFORMATION:</p>
+          <p className="warehouse-details__middle-name-item">
+            {warehouseDetails.contact_phone}
+          </p>
+          <p className="warehouse-details__middle-name-item">
+            {warehouseDetails.contact_email}
+          </p>
+        </div>
+        {/*  </div> */}
       </div>
 
       {/* Inventory Section */}
