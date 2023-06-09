@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./EditWarehouse.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditWarehouse() {
+  const navigateTo = useNavigate();
+
   const [warehouseDetails, setWarehouseDetails] = useState("");
   const params = useParams();
   const warehouseID = params.id || 1;
@@ -97,6 +99,7 @@ export default function EditWarehouse() {
           src={BackArrow}
           alt="Back Arrow"
           className="edit-warehouse__back-arrow"
+          onClick={() => navigateTo(-1)}
         />
         <p className="edit-warehouse__title">EditWarehouse</p>
       </div>

@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./AddWarehouse.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddWarehouse() {
+  const navigateTo = useNavigate();
+
   const [warehouseDetails, setWarehouseDetails] = useState({});
 
   const [phoneNumberError, setPhoneNumberError] = useState("");
@@ -76,6 +79,7 @@ export default function AddWarehouse() {
           src={BackArrow}
           alt="Back Arrow"
           className="edit-warehouse__back-arrow"
+          onClick={() => navigateTo(-1)}
         />
         <p className="edit-warehouse__title">AddWarehouse</p>
       </div>
