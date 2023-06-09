@@ -11,49 +11,335 @@
     margin: 0 auto;
     background-color: $white;
 
+    @include desktop {
+      width: 1020px;
+    }
+
     &__top {
       display: flex;
       justify-content: space-between;
-      margin: 16px;
+      margin: 1rem;
+
+      @include tablet {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        border-bottom: 1px solid $slate;
+
+        font-size: 15px;
+      }
+
       &--name {
         display: flex;
+        padding-top: 2rem;
         gap: 5%;
       }
     }
   }
 
+  .BLOCK {
+    display: flex;
+    flex-direction: column;
+  }
+
+  //    Text starts
+
+  .warehouse-details__middle {
+    font-family: TitilliumWeb;
+    font-weight: 400;
+    font-size: 12px;
+    color: $slate;
+
+    &--container {
+      display: flex;
+      gap: 1rem;
+    }
+
+    &-container--paragraph {
+      color: $instock-black;
+    }
+
+    &-address-item {
+      color: $instock-black;
+    }
+
+    &-name-item {
+      color: $instock-black;
+    }
+  }
+
+  // Text ends
+
+  // Middle Start
   .warehouse-details__middle {
     margin: 1rem;
     display: flex;
     flex-direction: column;
+    @include tablet {
+      border: none;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-right: 10rem;
+    }
     gap: 1rem;
     border-top: 1px solid $slate;
     border-bottom: 1px solid $slate;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
-    &--container {
+    &-container {
+      display: flex;
+
+      gap: 2rem;
+      @include tablet {
+        // border-left: 1px solid $slate;
+      }
+
+      &--paragraph {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  // Inventory header
+  .inventory-list-top {
+    background-color: $light-grey;
+    height: 40px;
+    padding-top: 0.5rem;
+
+    @include phone {
+      display: none;
+    }
+
+    &__head {
+      display: flex;
+      justify-content: space-evenly;
+    }
+    &__row {
       display: flex;
       gap: 3rem;
     }
+
+    &__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
-  .warehouse-details__bottom {
-    margin: 1rem;
-    display: flex;
-    gap: 4.3rem;
+  // Inventory List
 
-    &--inventory {
+  .inventory-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+
+    @include tablet {
+      flex-direction: column;
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      border-top: 0.0313rem solid $cloud;
+      padding: 1rem;
+      color: $instock-black;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      height: 196px;
+      position: relative;
+      text-overflow: clip;
+
+      @include tablet {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 1rem 3.5rem;
+        height: 4.75rem;
+        align-items: center;
+      }
+    }
+
+    &__text-box {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 5rem;
+
+      @include tablet {
+        gap: 1rem;
+        padding: 0;
+      }
+    }
+
+    &__column {
       display: flex;
       flex-direction: column;
       gap: 2rem;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: space-evenly;
+        margin-left: 1.5rem;
+        align-items: center;
+        width: 40%;
+      }
+    }
+
+    &__mobile-header {
+      color: $slate;
+      font-size: 11px;
+      font-weight: 600;
+      padding-bottom: 0.25rem;
+
+      @include tablet {
+        display: none;
+      }
+    }
+
+    &__item-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: $instock-indigo;
+    }
+
+    &__item-name {
+      display: flex;
+      flex-direction: row;
+      font-size: 13px;
+      line-height: 1.125rem;
+
+      &--category {
+        font-size: 13px;
+        line-height: 1.125rem;
+        @include tablet {
+          // margin-left: 4rem;
+        }
+      }
+    }
+
+    &__content--box {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: space-between;
+        padding: 0 1rem;
+        height: 2rem;
+        align-items: center;
+        width: 40%;
+      }
+    }
+
+    &__content--long {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: space-between;
+        padding: 0 1rem;
+        height: 2rem;
+        align-items: center;
+        width: 60%;
+      }
+    }
+
+    &__status {
+      font-size: 13px;
+      width: 30px;
+      &--in-stock {
+        color: #158463;
+        background: rgba(21, 132, 99, 0.07);
+        width: 80px;
+        height: 26px;
+        border-radius: 20px;
+        text-align: center;
+      }
+
+      &--out-of-stock {
+        color: #c94515;
+        background: rgba(201, 69, 21, 0.07);
+        width: 120px;
+        height: 26px;
+        border-radius: 20px;
+        text-align: center;
+      }
+    }
+
+    &__action {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1rem;
+      right: 1rem;
+
+      @include tablet {
+        width: 10%;
+        justify-content: flex-end;
+        position: relative;
+        bottom: 0rem;
+        left: 0.25rem;
+        gap: 1rem;
+      }
+    }
+
+    &__icon {
+      width: 1.5rem;
+      cursor: pointer;
     }
   }
 
-  .warehouse-details__inventory {
-    border-bottom: 1px solid $slate;
-    &--actions {
-      margin: 1rem;
-      display: flex;
-      justify-content: space-between;
-    }
-  }
+  // Inventory List ends
+
+  //     &__status--in-stock{
+  //         color: #158463;
+
+  //                 background: rgba(21, 132, 99, 0.07);
+  //                 width: 70px;
+  //                 height: 26px;
+  //                 border-radius: 20px;
+  //                 text-align: center;
+  // }
+
+  // &__status--out-of-stock {
+  //     color: #C94515;
+  //                    background: rgba(201, 69, 21, 0.07);
+  //                    width: 80px;
+  //                    height: 26px;
+  //     border-radius: 20px;
+  //     text-align: center;
+  // }
 }
+
+//             .instock {
+//                 color: #158463;
+
+//                 background: rgba(21, 132, 99, 0.07);
+//                 width: 70px;
+//                 height: 26px;
+//                 border-radius: 20px;
+//                 text-align: center;
+//               }
+
+//               .outofstock {
+//                 color: #C94515;
+//                background: rgba(201, 69, 21, 0.07);
+//                width: 80px;
+//                height: 26px;
+// border-radius: 20px;
+// text-align: center;
+//               }
