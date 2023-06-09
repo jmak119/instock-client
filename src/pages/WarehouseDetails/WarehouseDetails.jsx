@@ -8,7 +8,7 @@ import EditButton from "../../assets/icons/edit-24px.svg";
 import { apiUrl } from "../../utilities/api";
 import sort from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
-
+import arrowside from "../../assets/icons/chevron_right-24px.svg";
 export default function WarehouseDetails() {
   const navigateTo = useNavigate();
 
@@ -139,7 +139,10 @@ export default function WarehouseDetails() {
       {/* Inventory Section */}
       {inventoryList.map((inventory) => {
         return (
+
+
           <div className="inventory-list__container" key={warehouseDetails.id}>
+          
   <div className="inventory-list__text-box">
     <div className="inventory-list__column">
       <div className="inventory-list__content inventory-list__content--box">
@@ -151,7 +154,7 @@ export default function WarehouseDetails() {
       </div>
       <div className="inventory-list__content inventory-list__content--long">
         <h3 className="inventory-list__mobile-header">CATEGORY</h3>
-        <p className="inventory-list__item-name">{inventory.category}</p>
+        <p className="inventory-list__item-name--category">{inventory.category}</p>
       </div>
     </div>
     <div className="inventory-list__column">
@@ -172,6 +175,8 @@ export default function WarehouseDetails() {
     </Link>
   </div>
 </div>
+
+
 
                         
         );
