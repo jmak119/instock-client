@@ -9,10 +9,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 1rem;
+    width: 100%;
+    margin: 0 auto;
 
     @include tablet {
         padding: 0;
+        width: 100%;
     }
 
     @include desktop {
@@ -24,7 +26,7 @@
         padding: 2rem 1rem 1.5rem 1rem;
         display: flex;
         flex-direction: column;
-        
+
         @include tablet {
             flex-direction: row;
             justify-content: space-between;
@@ -49,11 +51,11 @@
         justify-content: center;
         align-items: center;
         gap: 1rem;
-        
+
         @include tablet {
             flex-direction: row;
             flex-wrap: nowrap;
-            width: 55%;
+            width: 65%;
             gap: 1.5rem;
             padding: 0;
         }
@@ -74,10 +76,15 @@
         background-color: inherit;
         line-height: 1.25rem;
         width: 100%;
+        font-size: .8125rem;
 
         &:focus {
             border: none;
             outline: none;
+        }
+
+        @include tablet {
+            font-size: .875rem;
         }
     }
 
@@ -102,16 +109,24 @@
         font-weight: 600;
         background-color: $instock-indigo;
         color: $white;
+        text-decoration: none;
+        padding: 1rem;
+        font-size: .8125rem;
 
         &:hover {
             background-color: $graphite;
             cursor: pointer;
         }
+
+        @include tablet {
+            height: 2.375rem;
+            font-size: .875rem;
+        }
     }
 
     &__headings-container {
         background-color: $light-grey;
-        
+
     }
 
     &__headings {
@@ -127,11 +142,35 @@
         }
     }
 
+    &__titles-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2.5rem;
+
+    }
+
     &__titles {
         display: flex;
         flex-direction: row;
-        font-size: 12px;
+        font-size: 0.75rem;
         line-height: 1.125rem;
+    }
+
+    &__titles-warehouse,
+    &__titles-address,
+    &__titles-contact-name {
+        width: 20%;
+    }
+
+    &__titles-contact-info {
+
+        width: 25%;
+    }
+
+    &__titles-actions {
+        width: 10%;
+        justify-content: flex-end;
     }
 
     &__heading-icon {
