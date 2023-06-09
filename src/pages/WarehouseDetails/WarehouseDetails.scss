@@ -4,7 +4,67 @@
 @use "../../styles/partials/variables" as *;
 
 * {
-    body {
-        background-color: white;
+   .warehouse-details {
+    background-color: white;
+    // width: 300px;
+    height: 1709px;
+    width: 320px;
+    
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+border-radius: 3px;
+margin: 16px;
+
+    &__top{
+        display: flex;
+        justify-content: space-between;
+        margin: 16px;
+        &--name{
+            display: flex;
+            gap: 5%;
+        }
+
     }
+   }
+
+    .warehouse-details__middle{
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-top: 1px solid $slate;
+        border-bottom: 1px solid $slate;
+
+        &--container{
+            display: flex;
+            gap: 3rem;
+        
+        }
+    }
+
+    .warehouse-details__bottom{
+        margin: 1rem;
+        display: flex;
+        gap: 4.3rem;
+        
+
+        &--inventory{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+         
+        }
+
+    
+    }
+
+    .warehouse-details__inventory{
+        
+        border-bottom: 1px solid $slate;
+        &--actions{
+            margin: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
 }
