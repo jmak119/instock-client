@@ -55,7 +55,7 @@
         @include tablet {
             flex-direction: row;
             flex-wrap: nowrap;
-            width: 55%;
+            width: 65%;
             gap: 1.5rem;
             padding: 0;
         }
@@ -76,10 +76,15 @@
         background-color: inherit;
         line-height: 1.25rem;
         width: 100%;
+        font-size: .8125rem;
 
         &:focus {
             border: none;
             outline: none;
+        }
+
+        @include tablet {
+            font-size: .875rem;
         }
     }
 
@@ -104,10 +109,18 @@
         font-weight: 600;
         background-color: $instock-indigo;
         color: $white;
+        text-decoration: none;
+        padding: 1rem;
+        font-size: .8125rem;
 
         &:hover {
             background-color: $graphite;
             cursor: pointer;
+        }
+
+        @include tablet {
+            height: 2.375rem;
+            font-size: .875rem;
         }
     }
 

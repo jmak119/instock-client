@@ -41,9 +41,9 @@ export default function Warehouse() {
               className="warehouse__searchbar-icon"
             ></button>
           </form>
-          <button className="warehouse__add-warehouse-button">
+          <Link className="warehouse__add-warehouse-button" to= {`/warehouse/add`}>
             + Add New Warehouse
-          </button>
+          </Link>
         </div>
       </div>
       <div className="warehouse__headings-container">

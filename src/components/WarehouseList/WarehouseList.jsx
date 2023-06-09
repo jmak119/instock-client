@@ -81,15 +81,17 @@ export default function WarehouseList({ warehouseList }) {
                                     className="warehouse-list__button"
                                 />
                                 <Modal isOpen={modal} onClose={closeModal} warehouseName={modalWarehouseName} warehouseId={modalWarehouseId} />
-                                <img
-                                    src={EditButton}
-                                    className='warehouse-list__button'
-                                />
+                                <Link className='warehouse-list__link' to={`/warehouse/edit/${warehouse.id}`}>
+                                    <img
+                                        src={EditButton}
+                                        className='warehouse-list__button'
+                                    />
+                                </Link>
                             </div>
                         </div>
                     );
                 })}
-            </div>
+            </div >
         </>
     );
 }
