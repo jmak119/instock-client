@@ -10,23 +10,61 @@
     .inventory-details{
         background-color: $white;
   border-radius: 0.1875rem;
-  width: 21.4375rem;
+//   width: 21.4375rem;
 
 
         &__header{
             display: flex;
-            justify-content: space-between;
-            margin: 2rem;
+            justify-content: space-around;
+            padding-top: 1.5rem;
+            border-bottom: 1px solid $light-grey;
+        
+            
 
             &__long{
                 display: flex;
                 align-items: center;
+                
+            }
+
+          
+
+            &--text{
+                font-size: 28px;
             }
 
             &--img{
                 background-color: $instock-indigo;
-                padding: 10px;
+                padding: 15px;
+                border-radius: 50px;
                 
+            }
+
+           
+        }
+
+        &__description{
+
+            &--header{
+                color: $slate;
+                font-weight: 600;
+                font-size: 11px;
+                line-height: 16px;
+
+            }
+
+            &--text{
+                color: $instock-black;
+                font-weight: 400;
+                font-size: 13px;
+                
+            }
+            &--box{
+                
+                &-item{
+                    display: flex;
+                    gap: 1rem;
+                }
             }
         }
 
