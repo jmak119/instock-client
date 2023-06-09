@@ -122,7 +122,7 @@ export default function AddWarehouse() {
           className="add-warehouse__back-arrow"
           onClick={() => navigateTo(-1)}
         />
-        <p className="add-warehouse__title">AddWarehouse</p>
+        <p className="add-warehouse__title">Add Warehouse</p>
       </div>
 
       <div>

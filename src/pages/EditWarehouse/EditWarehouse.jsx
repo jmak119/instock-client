@@ -101,7 +101,7 @@ export default function EditWarehouse() {
           className="edit-warehouse__back-arrow"
           onClick={() => navigateTo(-1)}
         />
-        <p className="edit-warehouse__title">EditWarehouse</p>
+        <p className="edit-warehouse__title">Edit Warehouse</p>
       </div>
 
       <div>
