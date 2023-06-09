@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AddWarehouse.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
@@ -96,7 +96,7 @@ export default function AddWarehouse() {
                 <input
                   type="text"
                   className="edit-warehouse__input"
-                  placeholder="Washington"
+                  placeholder="Warehouse Name"
                   name="warehouse_name"
                   value={warehouseDetails.warehouse_name}
                   onChange={handleOnChange}
@@ -107,7 +107,7 @@ export default function AddWarehouse() {
                 <input
                   type="text"
                   className="edit-warehouse__input"
-                  placeholder="300 Pearl Street SW"
+                  placeholder="Street Address"
                   name="address"
                   value={warehouseDetails.address}
                   onChange={handleOnChange}
@@ -117,6 +117,7 @@ export default function AddWarehouse() {
                 City
                 <input
                   type="text"
+                  placeholder="City"
                   className="edit-warehouse__input"
                   name="city"
                   value={warehouseDetails.city}
@@ -127,6 +128,7 @@ export default function AddWarehouse() {
                 Country
                 <input
                   type="text"
+                  placeholder="Country"
                   className="edit-warehouse__input"
                   name="country"
                   value={warehouseDetails.country}
@@ -141,6 +143,7 @@ export default function AddWarehouse() {
                 Contact Name
                 <input
                   type="text"
+                  placeholder="Contact Name"
                   className="edit-warehouse__input"
                   name="contact_name"
                   value={warehouseDetails.contact_name}
@@ -151,6 +154,7 @@ export default function AddWarehouse() {
                 Position
                 <input
                   type="text"
+                  placeholder="Position"
                   className="edit-warehouse__input"
                   name="contact_position"
                   value={warehouseDetails.contact_position}
@@ -161,6 +165,7 @@ export default function AddWarehouse() {
                 Phone Number
                 <input
                   type="tel"
+                  placeholder="Phone Number"
                   className="edit-warehouse__input"
                   name="contact_phone"
                   value={warehouseDetails.contact_phone}
@@ -172,6 +177,7 @@ export default function AddWarehouse() {
                 Email
                 <input
                   type="email"
+                  placeholder="Email"
                   className="edit-warehouse__input"
                   name="contact_email"
                   value={warehouseDetails.contact_email}
