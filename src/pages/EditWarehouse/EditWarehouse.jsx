@@ -107,7 +107,7 @@ export default function EditWarehouse() {
       <div>
         <form className="edit-warehouse__form " onSubmit={handleOnSubmit}>
           <div className="edit-warehouse__display">
-            <div className="edit-warehouse__details">
+            <div className="edit-warehouse__details edit-warehouse__details--border">
               <h3 className="edit-warehouse__details-title">
                 Warehouse Details
               </h3>
