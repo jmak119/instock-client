@@ -1,93 +1,204 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AddWarehouse.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddWarehouse() {
+  const navigateTo = useNavigate();
+
+  const [warehouseDetails, setWarehouseDetails] = useState({});
+
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setWarehouseDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
+  };
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    if (
+      !warehouseDetails.warehouse_name ||
+      !warehouseDetails.address ||
+      !warehouseDetails.city ||
+      !warehouseDetails.country ||
+      !warehouseDetails.contact_name ||
+      !warehouseDetails.contact_position ||
+      !warehouseDetails.contact_phone ||
+      !warehouseDetails.contact_email
+    ) {
+      return alert("Please do not leave any fields blank");
+    }
+    if (phoneNumberError || emailError) {
+      return alert(`Please enter valid data"`);
+    }
+    axios
+      .post(`http://localhost:8080/api/warehouses`, warehouseDetails)
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+  if (!warehouseDetails) {
+    return null;
+  }
+  function handlePhoneNumberChange(event) {
+    const value = event.target.value;
+
+    if (!/^\d{10}$/.test(value)) {
+      setPhoneNumberError("Please enter a valid phone number");
+    } else {
+      setPhoneNumberError("");
+    }
+  }
+
+  function handleEmailChange(event) {
+    const value = event.target.value;
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError("");
+    }
+  }
+  function validateEmailAddress(event) {
+    handleOnChange(event);
+    handleEmailChange(event);
+  }
+  function validatePhoneNumber(event) {
+    handleOnChange(event);
+    handlePhoneNumberChange(event);
+  }
+
   return (
-    <div div className="add-warehouse">
-      <div className="add-warehouse__header">
+    <div className="edit-warehouse">
+      <div className="edit-warehouse__header">
         <img
           src={BackArrow}
           alt="Back Arrow"
-          className="add-warehouse__back-arrow"
+          className="edit-warehouse__back-arrow"
+          onClick={() => navigateTo(-1)}
         />
-        <p className="add-warehouse__title">Add New Warehouse</p>
+        <p className="edit-warehouse__title">AddWarehouse</p>
       </div>
-      <div className="add-warehouse__display">
-        <div>
-          <form className="add-warehouse__form add-warehouse__form--border">
-            <div className="add-warehouse__details add-warehouse__details--border">
-              <p className="add-warehouse__details-title">Warehouse Details</p>
-              <label className="add-warehouse__label">
+
+      <div>
+        <form className="edit-warehouse__form " onSubmit={handleOnSubmit}>
+          <div className="edit-warehouse__display">
+            <div className="edit-warehouse__details">
+              <h3 className="edit-warehouse__details-title">
+                Warehouse Details
+              </h3>
+              <label className="edit-warehouse__label">
                 Warehouse Name
                 <input
                   type="text"
-                  className="add-warehouse__input"
-                  placeholder="Washington"
+                  className="edit-warehouse__input"
+                  placeholder="Warehouse Name"
+                  name="warehouse_name"
+                  value={warehouseDetails.warehouse_name}
+                  onChange={handleOnChange}
                 />
               </label>
-              <label className="add-warehouse__label">
+              <label className="edit-warehouse__label">
                 Street Address
                 <input
                   type="text"
-                  className="add-warehouse__input"
-                  placeholder="300 Pearl Street SW"
+                  className="edit-warehouse__input"
+                  placeholder="Street Address"
+                  name="address"
+                  value={warehouseDetails.address}
+                  onChange={handleOnChange}
                 />
               </label>
-              <label className="add-warehouse__label">
+              <label className="edit-warehouse__label">
                 City
-                <input type="text" className="add-warehouse__input" />
+                <input
+                  type="text"
+                  placeholder="City"
+                  className="edit-warehouse__input"
+                  name="city"
+                  value={warehouseDetails.city}
+                  onChange={handleOnChange}
+                />
               </label>
-              <label className="add-warehouse__label">
+              <label className="edit-warehouse__label">
                 Country
-                <input type="text" className="add-warehouse__input" />
+                <input
+                  type="text"
+                  placeholder="Country"
+                  className="edit-warehouse__input"
+                  name="country"
+                  value={warehouseDetails.country}
+                  onChange={handleOnChange}
+                />
               </label>
             </div>
-          </form>
-        </div>
-
-        <div>
-          <form className="add-warehouse__form ">
-            <div className="add-warehouse__details add-warehouse__details--border">
-              <p className="add-warehouse__details-title">Contact Details</p>
-              <label className="add-warehouse__label">
+            <div className="divider divider--vertical"></div>
+            <div className="edit-warehouse__details">
+              <h3 className="edit-warehouse__details-title">Contact Details</h3>
+              <label className="edit-warehouse__label">
                 Contact Name
                 <input
                   type="text"
-                  className="add-warehouse__input"
-                  placeholder="Washington"
+                  placeholder="Contact Name"
+                  className="edit-warehouse__input"
+                  name="contact_name"
+                  value={warehouseDetails.contact_name}
+                  onChange={handleOnChange}
                 />
               </label>
-              <label className="add-warehouse__label">
+              <label className="edit-warehouse__label">
                 Position
                 <input
                   type="text"
-                  className="add-warehouse__input"
-                  placeholder="300 Pearl Street SW"
+                  placeholder="Position"
+                  className="edit-warehouse__input"
+                  name="contact_position"
+                  value={warehouseDetails.contact_position}
+                  onChange={handleOnChange}
                 />
               </label>
-              <label className="add-warehouse__label">
+              <label className="edit-warehouse__label">
                 Phone Number
-                <input type="text" className="add-warehouse__input" />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className="edit-warehouse__input"
+                  name="contact_phone"
+                  value={warehouseDetails.contact_phone}
+                  onChange={validatePhoneNumber}
+                />
+                {phoneNumberError && <span>{phoneNumberError}</span>}
               </label>
-              <label className="add-warehouse__label">
+              <label className="edit-warehouse__label">
                 Email
-                <input type="text" className="add-warehouse__input" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="edit-warehouse__input"
+                  name="contact_email"
+                  value={warehouseDetails.contact_email}
+                  onChange={validateEmailAddress}
+                />
+                {emailError && <span>{emailError}</span>}
               </label>
             </div>
-          </form>
-        </div>
-      </div>
-      <div className="add-warehouse__footer">
-        <button className="add-warehouse__button add-warehouse__button--cancel">
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="add-warehouse__button add-warehouse__button--Add"
-        >
-          + Add Warehouse
-        </button>
+          </div>
+          <div className="edit-inventory__footer">
+            <button className="edit-warehouse__button edit-warehouse__button--cancel">
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="edit-warehouse__button edit-warehouse__button--save"
+            >
+              Save
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

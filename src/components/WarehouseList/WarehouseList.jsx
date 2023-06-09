@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Arrow from "../../assets/icons/chevron_right-24px.svg";
 import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
-import Modal from '../Modal/Modal';
-import axios from 'axios';
+import Modal from "../Modal/Modal";
+import axios from "axios";
 
 import "./WarehouseList.scss";
 import { apiUrl } from "../../utilities/api";
 
 export default function WarehouseList({ warehouseList }) {
+  const navigateTo = useNavigate();
 
-    console.log(warehouseList[0].warehouse_name);
+  console.log(warehouseList[0].warehouse_name);
 
-    // Modal start
-    const [modal, setModal] = useState(false);
-    const [modalWarehouseName, setModalWarehouseName] = useState('');
-    const [modalWarehouseId, setModalWarehouseId] = useState('');
+  // Modal start
+  const [modal, setModal] = useState(false);
+  const [modalWarehouseName, setModalWarehouseName] = useState("");
+  const [modalWarehouseId, setModalWarehouseId] = useState("");
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = (warehouseName, warehouseId) => {

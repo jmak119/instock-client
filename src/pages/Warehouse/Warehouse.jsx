@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 import "./Warehouse.scss";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import Arrow from "../../assets/icons/chevron_right-24px.svg";
@@ -9,6 +10,8 @@ import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import { apiUrl } from "../../utilities/api";
 
 export default function Warehouse() {
+  const navigateTo = useNavigate();
+
   const [warehouseList, setWarehouseList] = useState();
   useEffect(() => {
     axios
