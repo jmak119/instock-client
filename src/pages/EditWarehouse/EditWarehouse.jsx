@@ -101,13 +101,13 @@ export default function EditWarehouse() {
           className="edit-warehouse__back-arrow"
           onClick={() => navigateTo(-1)}
         />
-        <p className="edit-warehouse__title">EditWarehouse</p>
+        <p className="edit-warehouse__title">Edit Warehouse</p>
       </div>
 
       <div>
         <form className="edit-warehouse__form " onSubmit={handleOnSubmit}>
           <div className="edit-warehouse__display">
-            <div className="edit-warehouse__details">
+            <div className="edit-warehouse__details edit-warehouse__details--border">
               <h3 className="edit-warehouse__details-title">
                 Warehouse Details
               </h3>
