@@ -4,7 +4,32 @@
 @use "../../styles/partials/variables" as *;
 
 * {
-    body {
-        background-color: white;
+ 
+
+
+    .inventory-details{
+        background-color: $white;
+  border-radius: 0.1875rem;
+  width: 21.4375rem;
+
+
+        &__header{
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem;
+
+            &__long{
+                display: flex;
+                align-items: center;
+            }
+
+            &--img{
+          fill: red
+                
+            }
+        }
+
     }
+
+
 }
