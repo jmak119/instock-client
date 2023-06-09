@@ -127,3 +127,11 @@
     margin-right: 10px;
   }
 }
+
+.divider {
+  &--vertical {
+    width: 1px;
+    align-self: stretch;
+    background-color: lightgrey;
+  }
+}
