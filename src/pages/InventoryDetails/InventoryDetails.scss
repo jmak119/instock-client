@@ -10,14 +10,14 @@
     .inventory-details{
         background-color: $white;
   border-radius: 0.1875rem;
-//   width: 21.4375rem;
+  height: 365px;
 
 
         &__header{
             display: flex;
             justify-content: space-around;
             padding-top: 1.5rem;
-            border-bottom: 1px solid $light-grey;
+            border-bottom: 1px solid $cloud;
         
             
 
@@ -30,12 +30,17 @@
           
 
             &--text{
+                font-weight: 600;
                 font-size: 28px;
+            
+            
             }
 
             &--img{
                 background-color: $instock-indigo;
-                padding: 15px;
+                // padding: 15px;
+                width: 36px;
+                height: 36px;
                 border-radius: 50px;
                 
             }
@@ -44,6 +49,9 @@
         }
 
         &__description{
+
+            margin: 1rem;
+
 
             &--header{
                 color: $slate;

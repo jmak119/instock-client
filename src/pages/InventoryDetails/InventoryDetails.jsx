@@ -9,28 +9,52 @@ import axios from "axios";
 
 
 
-export default function InventoryDetails(warehouseList) {
+export default function InventoryDetails() {
   const [inventoryItem, setInventoryItem] = useState();
+  const [warehouseList, setWarehouseList] = useState([]);
+
   const { id } = useParams(); // Retrieve the 'id' parameter from the URL
 
-  console.log(id)
-  console.log(warehouseList)
+
 
   useEffect(() => {
     axios
-    // .get(`${apiUrl}/api/inventories/warehouse/${id}`)
+    
     .get(`${apiUrl}/api/inventories/${id}`)
     .then((response) => {
          setInventoryItem(response.data);
+         console.log(response.data); // Log the inventory list to the console
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
+  // list of warehouses 
+
+  useEffect(() => {
+    axios
+      .get(`${apiUrl}/api/warehouses`)
+      .then((response) => {
+        setWarehouseList(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
+
+
+  
+
   if (!inventoryItem) {
     return <span>Loading...</span>;
   }
+
+  const matchingWarehouse = warehouseList.find(
+    (warehouse) => warehouse.id === inventoryItem.warehouse_id
+  );
+  
   
   return (
    <section className='inventory-details'>
@@ -59,6 +83,13 @@ export default function InventoryDetails(warehouseList) {
         <div className='inventory-details__description--box--itembox'>
         <p className='inventory-details__description--header'>Status: </p>
         <p className='inventory-details__description--text'> IN STOCK</p>
+        <p
+                    className={`inventory-details__description--status ${
+                      inventoryItem.status === "In Stock"
+                        ? "inventory-list__status--in-stock"
+                        : "inventory-list__status--out-of-stock"
+                    }`}
+                  ></p>
         </div>
 
         <div className='inventory-details__description--box--itembox'>
@@ -68,7 +99,7 @@ export default function InventoryDetails(warehouseList) {
         </div>
           
         <p className='inventory-details__description--header'>Warehouse</p>
-        <p className='inventory-details__description--text'> {inventoryItem.warehouse_id}</p>
+        <p className='inventory-details__description--text'>{matchingWarehouse ? matchingWarehouse.warehouse_name : ''}</p>
         </div>
    </div>
 
