@@ -64,8 +64,9 @@ export default function InventoryDetails() {
     <img src={Arrowback}/>
     <p className='inventory-details__header--text'>{inventoryItem.item_name}</p>
    </div>
-
+   <div className="inventory-details__header--circle">
      <img src={EditButton} className='inventory-details__header--img'/>
+     </div>
    </div>
 
 
@@ -82,14 +83,14 @@ export default function InventoryDetails() {
         <div className='inventory-details__description--box-item'>
         <div className='inventory-details__description--box--itembox'>
         <p className='inventory-details__description--header'>Status: </p>
-        <p className='inventory-details__description--text'> IN STOCK</p>
+        
         <p
                     className={`inventory-details__description--status ${
                       inventoryItem.status === "In Stock"
-                        ? "inventory-list__status--in-stock"
-                        : "inventory-list__status--out-of-stock"
+                        ? "inventory-details__description--status--in-stock"
+                        : "inventory-details__description--status--out-of-stock"
                     }`}
-                  ></p>
+                  >{inventoryItem.status}</p>
         </div>
 
         <div className='inventory-details__description--box--itembox'>
@@ -98,7 +99,7 @@ export default function InventoryDetails() {
         </div>
         </div>
           
-        <p className='inventory-details__description--header'>Warehouse</p>
+        <p className='inventory-details__description--header'>Warehouse:</p>
         <p className='inventory-details__description--text'>{matchingWarehouse ? matchingWarehouse.warehouse_name : ''}</p>
         </div>
    </div>

@@ -9,6 +9,7 @@
 
     .inventory-details{
         background-color: $white;
+        
   border-radius: 0.1875rem;
   height: 365px;
 
@@ -18,6 +19,10 @@
             justify-content: space-around;
             padding-top: 1.5rem;
             border-bottom: 1px solid $cloud;
+
+            @include tablet {
+             justify-content: space-around;
+            }
         
             
 
@@ -36,13 +41,22 @@
             
             }
 
-            &--img{
+            &--circle{
                 background-color: $instock-indigo;
-                // padding: 15px;
+                
                 width: 36px;
                 height: 36px;
                 border-radius: 50px;
+           
+            
                 
+            }
+            &--img{
+              
+             filter: brightness(4) sepia(0) hue-rotate(0deg) saturate(0);
+             padding-left: 0.5rem;
+             padding-top: 0.5rem;
+            
             }
 
            
@@ -51,6 +65,7 @@
         &__description{
 
             margin: 1rem;
+            margin-top: 2rem;
 
 
             &--header{
@@ -58,6 +73,7 @@
                 font-weight: 600;
                 font-size: 11px;
                 line-height: 16px;
+                margin-bottom: 0.25rem;
 
             }
 
@@ -65,13 +81,42 @@
                 color: $instock-black;
                 font-weight: 400;
                 font-size: 13px;
+                margin-bottom: 1rem;
+
                 
             }
+
+            &--status{
+                display: flex;
+                align-items: center;
+                padding-left: 0.5rem;
+                line-height: 1.125rem;
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 11px;
+                width: 100%;
+
+
+        &--in-stock {
+            color: #158463;
+            background: rgba(21, 132, 99, 0.07);
+            width: 5rem;
+            height: 2.25rem;
+            border-radius: 1.25rem;
+        }
+
+        &--out-of-stock {
+            color: #C94515;
+            background: rgba(201, 69, 21, 0.07);
+            width: 5.1875rem;
+            height: 1.25rem;
+            border-radius: 1.25rem;
+        }
+            }
             &--box{
-                
                 &-item{
                     display: flex;
-                    gap: 1rem;
+                    gap: 5rem;
                 }
             }
         }
