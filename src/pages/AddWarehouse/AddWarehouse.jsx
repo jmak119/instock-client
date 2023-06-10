@@ -17,8 +17,8 @@ export default function AddWarehouse() {
   const [emptyEmailError, setEmptyEmailError] = useState(false);
   const [warehouseDetails, setWarehouseDetails] = useState({});
 
-  const [phoneNumberError, setPhoneNumberError] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -44,42 +44,48 @@ export default function AddWarehouse() {
       !warehouseDetails.contact_position ||
       !warehouseDetails.contact_phone ||
       !warehouseDetails.contact_email
-    ) {
-      return alert("Please do not leave any fields blank");
+    ) 
+    {
+      alert("Please do not leave any fields blank");
+      if (!warehouseDetails.warehouse_name) {
+        setEmptyNameError(true);
+      }
+      if (!warehouseDetails.address) {
+        setEmptyAddressError(true);
+      }
+      if (!warehouseDetails.city) {
+        setEmptyCityError(true);
+      }
+      if (!warehouseDetails.country) {
+        setEmptyCountryError(true);
+      }
+      if (!warehouseDetails.contact_name) {
+        setEmptyContactError(true);
+      }
+      if (!warehouseDetails.contact_position) {
+        setEmptyPositionError(true);
+      }
+      if (!warehouseDetails.contact_phone) {
+        setEmptyPhoneError(true);
+      }
+      if (!warehouseDetails.contact_email) {
+        setEmptyEmailError(true);
+      }
+      return;
     }
-    if (phoneNumberError || emailError) {
-      return alert(`Please enter valid data"`);
+
+    if (phoneNumberError) {
+      setPhoneNumberError(true);
     }
+    if (emailError) {
+      setEmailError(true);
+    }
+
     axios
       .post(`http://localhost:8080/api/warehouses`, warehouseDetails)
       .catch((error) => {
         alert(error);
       });
-
-    if (!warehouseDetails.warehouse_name) {
-      setEmptyNameError(true);
-    }
-    if (!warehouseDetails.address) {
-      setEmptyAddressError(true);
-    }
-    if (!warehouseDetails.city) {
-      setEmptyCityError(true);
-    }
-    if (!warehouseDetails.country) {
-      setEmptyCountryError(true);
-    }
-    if (!warehouseDetails.contact_name) {
-      setEmptyContactError(true);
-    }
-    if (!warehouseDetails.contact_position) {
-      setEmptyPositionError(true);
-    }
-    if (!warehouseDetails.contact_phone) {
-      setEmptyPhoneError(true);
-    }
-    if (!warehouseDetails.contact_email) {
-      setEmptyEmailError(true);
-    }
   };
 
   if (!warehouseDetails) {
@@ -338,7 +344,18 @@ export default function AddWarehouse() {
                       </p>
                     </div>
                   )}
-                  {phoneNumberError && <span>{phoneNumberError}</span>}
+                  {phoneNumberError && (
+                    <div className="add-warehouse__error add-warehouse__error--name">
+                      <img
+                        src={ErrorIcon}
+                        alt="Error Icon"
+                        className="add-warehouse__error-icon"
+                      />
+                      <p className="add-warehouse__error-text">
+                        Invalid phone number format
+                      </p>
+                    </div>
+                  )}
                 </div>
               </label>
               <label className="add-warehouse__label">
@@ -347,11 +364,12 @@ export default function AddWarehouse() {
                   <input
                     type="email"
                     placeholder="Email"
-                    className={`${
-                      emptyEmailError
-                        ? "add-warehouse__input add-warehouse__input--error"
-                        : "add-warehouse__input"
-                    }`}
+                    className={`add-warehouse__input
+                    ${emptyEmailError ? " add-warehouse__input--error" : ""}
+                    
+                    ${emailError ? " add-warehouse__input--error" : ""}
+                  
+                  `}
                     name="contact_email"
                     value={warehouseDetails.contact_email}
                     onChange={validateEmailAddress}
@@ -368,7 +386,18 @@ export default function AddWarehouse() {
                       </p>
                     </div>
                   )}
-                  {emailError && <span>{emailError}</span>}
+                  {emailError && (
+                    <div className="add-warehouse__error add-warehouse__error--name">
+                      <img
+                        src={ErrorIcon}
+                        alt="Error Icon"
+                        className="add-warehouse__error-icon"
+                      />
+                      <p className="add-warehouse__error-text">
+                        Invalid email format
+                      </p>
+                    </div>
+                  )}
                 </div>
               </label>
             </div>
