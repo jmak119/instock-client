@@ -14,7 +14,7 @@
         flex-direction: column;
         width: 90%;
         margin: 0 auto;
-        height: 365px;
+        height: 22.8125rem;
         
 
   @include tablet {
@@ -23,9 +23,6 @@
     margin: 0 auto;
   }
 
-  @include desktop {
-    width: 1020px;
-  }
 
   
 
@@ -59,22 +56,28 @@
 
             &--text{
                 font-weight: 600;
-                font-size: 28px;
+                font-size: 1.75rem;
             
             
+            }
+
+            &--link {
+                text-decoration: none;
             }
 
             &--circle{
                 background-color: $instock-indigo;
                 
-                width: 36px;
-                height: 36px;
-                border-radius: 50px;
+                width: 2.25rem;
+                height: 2.25rem;
+                border-radius: 3.125rem;
+                text-decoration: none;
 
                 @include tablet {
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    text-decoration: none;
 
                 }
            
@@ -86,12 +89,15 @@
                 &-text{
                     @include phone {
                         display: none;
+                        
                     }
 
                     color: $white;
                     font-weight: 400;
                     font-size: 14px;
-                    line-height: 22px
+                    line-height: 22px;
+                    text-decoration: none;
+                    
                 }
             
                 
@@ -181,7 +187,7 @@
 
         &--box--tablet {
             @include tablet {
-             border-left: 1px solid $cloud;
+             border-left: .0625rem solid $cloud;
              padding-left: 5rem;
              
              
