@@ -9,7 +9,10 @@ import axios from "axios";
 
 
 
+
 export default function InventoryDetails() {
+  const navigateTo = useNavigate();
+
   const [inventoryItem, setInventoryItem] = useState();
   const [warehouseList, setWarehouseList] = useState([]);
 
@@ -61,25 +64,31 @@ export default function InventoryDetails() {
 
    <div className='inventory-details__header'>
    <div className='inventory-details__header__long'>
-    <img src={Arrowback}/>
+    <img src={Arrowback} onClick={() => navigateTo(-1)}/>
     <p className='inventory-details__header--text'>{inventoryItem.item_name}</p>
    </div>
+
+   <Link className='inventory-details__header--link' to={`/inventory/edit/${inventoryItem.id}`}>
+
    <div className="inventory-details__header--circle">
+    
      <img src={EditButton} className='inventory-details__header--img'/>
+     <p className="inventory-details__header--circle-text">Edit</p>
      </div>
+     </Link>
    </div>
 
 
    <div className='inventory-details__description'>
         <div className='inventory-details__description--box'>
         <p className='inventory-details__description--header'> ITEM DESCRIPTION</p>
-        <p className='inventory-details__description--text'> {inventoryItem.description}</p>
+        <p className='inventory-details__description--text inventory-details__description--text--description'> {inventoryItem.description}</p>
            
         <p className='inventory-details__description--header'>CATEGORY</p>
         <p className='inventory-details__description--text'> {inventoryItem.category}</p>
         </div>
 
-        <div className='inventory-details__description--box'>
+        <div className='inventory-details__description--box inventory-details__description--box--tablet'>
         <div className='inventory-details__description--box-item'>
         <div className='inventory-details__description--box--itembox'>
         <p className='inventory-details__description--header'>Status: </p>
