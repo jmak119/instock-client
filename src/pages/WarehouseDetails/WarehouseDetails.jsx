@@ -10,7 +10,6 @@ import axios from "axios";
 import arrowside from "../../assets/icons/chevron_right-24px.svg";
 import WarehouseListModal from "../../components/WarehouseListModal/WarehouseListModal";
 
-
 export default function WarehouseDetails() {
   const navigateTo = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,11 +46,13 @@ export default function WarehouseDetails() {
         setInventoryList(response.data);
       })
       .catch((err) => {
+        setInventoryList([]);
         console.error(err);
       });
   }, [id]);
 
   if (!warehouseDetails || !inventoryList) {
+    console.log(inventoryList);
     return <span>Loading...</span>;
   }
 
@@ -82,7 +83,9 @@ export default function WarehouseDetails() {
 
         <div className="warehouse-details__middle">
           <div className="warehouse-details__middle--top">
-            <p className="warehouse-details__middle-address">WAREHOUSE ADDRESS</p>
+            <p className="warehouse-details__middle-address">
+              WAREHOUSE ADDRESS
+            </p>
             <p className="warehouse-details__middle-address-item">
               {warehouseDetails.address}
             </p>
@@ -168,10 +171,7 @@ export default function WarehouseDetails() {
 
           {inventoryList.map((inventory) => {
             return (
-              <div
-                className="inventory-list__container"
-                key={inventory.id}
-              >
+              <div className="inventory-list__container" key={inventory.id}>
                 <div className="inventory-list__content inventory-list__inventory-name-container">
                   <h3 className="inventory-list__mobile-header">
                     INVENTORY ITEM
@@ -214,14 +214,14 @@ export default function WarehouseDetails() {
                 </div>
 
                 <div className="inventory-list__actions-container">
-                <img
-                src={DeleteButton}
-                alt="delete icon"
-                className="inventory-list__icon inventory-list__icon--delete"
-                onClick={() => {
-                  openModal(inventory.id, inventory.item_name);
-                }}
-              />
+                  <img
+                    src={DeleteButton}
+                    alt="delete icon"
+                    className="inventory-list__icon inventory-list__icon--delete"
+                    onClick={() => {
+                      openModal(inventory.id, inventory.item_name);
+                    }}
+                  />
 
                   <Link
                     to={`/inventory/edit/${inventory.id}`}
@@ -239,15 +239,15 @@ export default function WarehouseDetails() {
           })}
         </div>
       </div>
-      
+
       {isModalOpen && (
-      <WarehouseListModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        WarehouseListInventoryName={selectedInventoryName}
-        WarehouseListInventoryNameid={selectedInventoryId}
-      />
-    )}
+        <WarehouseListModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          WarehouseListInventoryName={selectedInventoryName}
+          WarehouseListInventoryNameid={selectedInventoryId}
+        />
+      )}
     </>
   );
 }

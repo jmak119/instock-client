@@ -4,25 +4,20 @@
 
 * {
   body.active-inventory-modal {
-    overflow-y: hidden;
-    overflow-x: hidden;
+    /* overflow-y: hidden;
+    overflow-x: hidden; */
   }
 
   .inventory-modal {
     z-index: 999;
     height: 100vh;
-    
-   
   }
-
-
 
   .inventory-modal-content__mobile {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-end;
-    
   }
 
   .inventory-modal-content__text-item {
@@ -31,7 +26,6 @@
     justify-content: space-between;
 
     gap: 20rem;
-
 
     // margin: 1rem;
 
@@ -59,7 +53,7 @@
     position: absolute;
     background-color: white;
     height: 100%;
-    width: 100vw;
+    /* width: 100vw; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -69,10 +63,9 @@
   .inventory-close-modal-box {
     display: flex;
     justify-content: end;
-    
+
     padding-right: 1rem;
     padding-top: 5rem;
-    
   }
 
   .inventory-modal__buttons {
@@ -81,7 +74,7 @@
 
     &--close {
       background-color: $white;
-      width: 125px;
+      /* width: 125px; */
       height: 36px;
       border: 1px solid #bdc5d5;
       border-radius: 20px;
@@ -95,7 +88,7 @@
     &--delete {
       background-color: #c94515;
       color: $white;
-      width: 125px;
+      /* width: 125px; */
       height: 36px;
       border: 1px solid #bdc5d5;
       border-radius: 20px;
