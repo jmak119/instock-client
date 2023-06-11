@@ -3,10 +3,18 @@ import "./EditWarehouse.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import ErrorIcon from "../../assets/icons/error-24px.svg";
 
 export default function EditWarehouse() {
   const navigateTo = useNavigate();
-
+  const [emptyNameError, setEmptyNameError] = useState(false);
+  const [emptyAddressError, setEmptyAddressError] = useState(false);
+  const [emptyCityError, setEmptyCityError] = useState(false);
+  const [emptyCountryError, setEmptyCountryError] = useState(false);
+  const [emptyContactError, setEmptyContactError] = useState(false);
+  const [emptyPhoneError, setEmptyPhoneError] = useState(false);
+  const [emptyPositionError, setEmptyPositionError] = useState(false);
+  const [emptyEmailError, setEmptyEmailError] = useState(false);
   const [warehouseDetails, setWarehouseDetails] = useState("");
   const params = useParams();
   const warehouseID = params.id || 1;
@@ -35,6 +43,14 @@ export default function EditWarehouse() {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     setEmptyField(false);
+    setEmptyNameError(false);
+    setEmptyAddressError(false);
+    setEmptyCityError(false);
+    setEmptyCountryError(false);
+    setEmptyContactError(false);
+    setEmptyPhoneError(false);
+    setEmptyPositionError(false);
+    setEmptyEmailError(false);
     if (
       warehouseDetails.warehouse_name === "" ||
       warehouseDetails.address === "" ||
@@ -46,19 +62,52 @@ export default function EditWarehouse() {
       warehouseDetails.contact_email === ""
     ) {
       setEmptyField(true);
-      return alert("Please do not leave any fields blank");
+      alert("Please do not leave any fields blank");
     }
     if (phoneNumberError || emailError) {
-      return alert(`Please enter valid data"`);
+      alert(`Please enter valid data"`);
     }
-    axios
-      .put(
-        `http://localhost:8080/api/warehouses/${warehouseID}`,
-        warehouseDetails
-      )
-      .catch((error) => {
-        alert(error);
-      });
+    if (!warehouseDetails.warehouse_name) {
+      setEmptyNameError(true);
+      // return;
+    }
+    if (!warehouseDetails.address) {
+      setEmptyAddressError(true);
+      // return;
+    }
+    if (!warehouseDetails.city) {
+      setEmptyCityError(true);
+      // return;
+    }
+    if (!warehouseDetails.country) {
+      setEmptyCountryError(true);
+      // return;
+    }
+    if (!warehouseDetails.contact_name) {
+      setEmptyContactError(true);
+      // return;
+    }
+    if (!warehouseDetails.contact_position) {
+      setEmptyPositionError(true);
+      // return;
+    }
+    if (!warehouseDetails.contact_phone) {
+      setEmptyPhoneError(true);
+      // return;
+    }
+    if (!warehouseDetails.contact_email) {
+      setEmptyEmailError(true);
+      // return;
+    } else {
+      axios
+        .put(
+          `http://localhost:8080/api/warehouses/${warehouseID}`,
+          warehouseDetails
+        )
+        .catch((error) => {
+          alert(error);
+        });
+    }
   };
 
   if (!warehouseDetails) {
@@ -115,43 +164,107 @@ export default function EditWarehouse() {
                 Warehouse Name
                 <input
                   type="text"
-                  className="edit-warehouse__input"
-                  placeholder="Washington"
+                  // placeholder="Washington"
                   name="warehouse_name"
                   value={warehouseDetails.warehouse_name}
                   onChange={handleOnChange}
+                  className={`${
+                    emptyNameError
+                      ? "edit-warehouse__input edit-warehouse__input--error"
+                      : "edit-warehouse__input"
+                  }`}
                 />
+                {emptyNameError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </label>
               <label className="edit-warehouse__label">
                 Street Address
                 <input
                   type="text"
-                  className="edit-warehouse__input"
-                  placeholder="300 Pearl Street SW"
+                  // placeholder="300 Pearl Street SW"
                   name="address"
                   value={warehouseDetails.address}
                   onChange={handleOnChange}
+                  className={`${
+                    emptyAddressError
+                      ? "edit-warehouse__input edit-warehouse__input--error"
+                      : "edit-warehouse__input"
+                  }`}
                 />
+                {emptyAddressError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </label>
               <label className="edit-warehouse__label">
                 City
                 <input
                   type="text"
-                  className="edit-warehouse__input"
                   name="city"
                   value={warehouseDetails.city}
                   onChange={handleOnChange}
+                  className={`${
+                    emptyCityError
+                      ? "edit-warehouse__input edit-warehouse__input--error"
+                      : "edit-warehouse__input"
+                  }`}
                 />
+                {emptyCityError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </label>
               <label className="edit-warehouse__label">
                 Country
                 <input
                   type="text"
-                  className="edit-warehouse__input"
                   name="country"
                   value={warehouseDetails.country}
                   onChange={handleOnChange}
+                  className={`${
+                    emptyCountryError
+                      ? "edit-warehouse__input edit-warehouse__input--error"
+                      : "edit-warehouse__input"
+                  }`}
                 />
+                {emptyCountryError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </label>
             </div>
             <div className="divider divider--vertical"></div>
@@ -161,43 +274,130 @@ export default function EditWarehouse() {
                 Contact Name
                 <input
                   type="text"
-                  className="edit-warehouse__input"
                   name="contact_name"
                   value={warehouseDetails.contact_name}
                   onChange={handleOnChange}
+                  className={`${
+                    emptyContactError
+                      ? "edit-warehouse__input edit-warehouse__input--error"
+                      : "edit-warehouse__input"
+                  }`}
                 />
+                {emptyContactError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </label>
               <label className="edit-warehouse__label">
                 Position
                 <input
                   type="text"
-                  className="edit-warehouse__input"
                   name="contact_position"
                   value={warehouseDetails.contact_position}
                   onChange={handleOnChange}
+                  className={`${
+                    emptyPositionError
+                      ? "edit-warehouse__input edit-warehouse__input--error"
+                      : "edit-warehouse__input"
+                  }`}
                 />
+                {emptyPositionError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
               </label>
               <label className="edit-warehouse__label">
                 Phone Number
                 <input
                   type="tel"
-                  className="edit-warehouse__input"
                   name="contact_phone"
                   value={warehouseDetails.contact_phone}
                   onChange={validatePhoneNumber}
+                  className={`${
+                    emptyPhoneError
+                      ? "edit-warehouse__input edit-warehouse__input--error"
+                      : "edit-warehouse__input"
+                  }`}
                 />
-                {phoneNumberError && <span>{phoneNumberError}</span>}
+                {emptyPhoneError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
+                {phoneNumberError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      Invalid phone number format
+                    </p>
+                  </div>
+                )}
               </label>
               <label className="edit-warehouse__label">
                 Email
                 <input
                   type="email"
-                  className="edit-warehouse__input"
                   name="contact_email"
                   value={warehouseDetails.contact_email}
                   onChange={validateEmailAddress}
+                  className={`edit-warehouse__input
+                    ${emptyEmailError ? " edit-warehouse__input--error" : ""}
+                    
+                    ${emailError ? " edit-warehouse__input--error" : ""}
+                  
+                  `}
                 />
-                {emailError && <span>{emailError}</span>}
+                {emptyEmailError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      This field is required
+                    </p>
+                  </div>
+                )}
+                {emailError && (
+                  <div className="edit-warehouse__error edit-warehouse__error--name">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="edit-warehouse__error-icon"
+                    />
+                    <p className="edit-warehouse__error-text">
+                      Invalid email format
+                    </p>
+                  </div>
+                )}
               </label>
             </div>
           </div>

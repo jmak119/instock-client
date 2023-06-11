@@ -4,7 +4,7 @@ import closeicon from '../../assets/icons/close-24px.svg';
 import axios from 'axios';
 import { apiUrl } from '../../utilities/api';
 
-const Modal = ({ isOpen, onClose, warehouseName, warehouseId }) => {
+const WarehouseModal = ({ isOpen, onClose, warehouseName, warehouseId }) => {
 
   const handleDelete = () => {
     axios
@@ -28,7 +28,9 @@ const Modal = ({ isOpen, onClose, warehouseName, warehouseId }) => {
       <div className='modal-content'>
         <div className='modal-content__mobile'>
           <div className='modal-content__text-close'>
+          <div className='close-modal-box'>
             <img onClick={onClose} className='close-modal' src={closeicon} alt='Close' />
+            </div>
             <div className='modal-content__text-item'>
               <div className='modal-content__text-item--text'>
                 <h2 className='modal-content__text-item--header'>Delete {warehouseName} warehouse</h2>
@@ -52,4 +54,4 @@ const Modal = ({ isOpen, onClose, warehouseName, warehouseId }) => {
   );
 };
 
-export default Modal;
+export default WarehouseModal;

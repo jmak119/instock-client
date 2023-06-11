@@ -99,6 +99,18 @@
       height: 36px;
     }
   }
+  &__error {
+    display: flex;
+    align-items: center;
+    color: $red;
+    margin-bottom: 10px;
+  }
+
+  &__error-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
 }
 
 @include tablet {
@@ -173,6 +185,15 @@
         height: 7.5rem;
         resize: none;
       }
+      &--error {
+        outline: 0.0625rem solid $red;
+        margin-bottom: 4px;
+      }
+      &:focus {
+        border: 1px solid $instock-indigo;
+        background-color: $white;
+        outline: 0;
+      }
     }
     &__display {
       display: flex;
@@ -225,6 +246,18 @@
       width: 1px;
       align-self: stretch;
       background-color: lightgrey;
+    }
+    &__error {
+      display: flex;
+      align-items: center;
+      color: $red;
+      margin-bottom: 10px;
+    }
+
+    &__error-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
     }
   }
 }

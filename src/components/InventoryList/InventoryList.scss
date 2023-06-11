@@ -121,6 +121,33 @@
         }
     }
 
+    &__status {
+        display: flex;
+        align-items: center;
+        padding-left: 0.4rem;
+        line-height: 1.125rem;
+        text-transform: uppercase;
+
+        &--in-stock {
+            color: #158463;
+            background: rgba(21, 132, 99, 0.07);
+            width: 3.5625rem;
+            height: 1.25rem;
+            border-radius: 1.25rem;
+        }
+
+        &--out-of-stock {
+            color: #C94515;
+            background: rgba(201, 69, 21, 0.07);
+            width: 5.1875rem;
+            height: 1.25rem;
+            border-radius: 1.25rem;
+        }
+    }
+        
+
+    
+
     &__buttons-container {
         display: flex;
         justify-content: space-between;
