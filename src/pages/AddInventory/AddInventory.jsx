@@ -309,9 +309,7 @@ export default function AddInventory() {
                     : ""
                 }`}
                 >
-                  <option value="" className="change">
-                    Please select
-                  </option>
+                  <option value="">Please select</option>
                   {warehouseList.map((warehouse) => {
                     return (
                       <option value={warehouse.id}>
