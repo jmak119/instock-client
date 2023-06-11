@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./WarehouseDetails.scss";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import arrow from "../../assets/icons/arrow_back-24px.svg";
-import edit from "../../assets/icons/edit-24px.svg";
 import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
 import { apiUrl } from "../../utilities/api";
@@ -53,14 +52,24 @@ export default function WarehouseDetails() {
     <div className="warehouse-details">
       <div className="warehouse-details__top">
         <div className="warehouse-details__top--name">
-          <img src={arrow} alt="Arrow" />
+          <Link to={`/warehouse`} className="warehouse-details__back">
+            <img src={arrow} alt="Arrow" />
+          </Link>
           <h1>{warehouseDetails.warehouse_name}</h1>
         </div>
-        <img
-          src={edit}
-          alt="Edit"
-          onClick={() => navigateTo(`/warehouse/edit/${id}`)}
-        />
+        <Link
+          to={`/warehouse/edit/${id}`}
+          className="warehouse-details__edit-icon--link"
+        >
+          <div className="warehouse-details__edit-icon--circle">
+            <img
+              src={EditButton}
+              className="warehouse-details__edit-icon--img"
+              alt="Edit"
+            />
+            <p className="warehouse-details__edit-icon--circle-text">Edit</p>
+          </div>
+        </Link>
       </div>
 
       {/* Contact info section */}
@@ -76,7 +85,7 @@ export default function WarehouseDetails() {
           </p>
         </div>
         <div className="warehouse-details__middle--container">
-          <div className="warehouse-details__middle--container--contact">
+          <div className="warehouse-details__middle--container--contact-name">
             <p className="warehouse-details__middle-name">CONTACT NAME:</p>
             <p className="warehouse-details__middle-name-item">
               {warehouseDetails.contact_name}
@@ -158,7 +167,7 @@ export default function WarehouseDetails() {
               className="inventory-list__container"
               key={warehouseDetails.id}
             >
-              <div className="inventory-list__content inventory-list__content--box">
+              <div className="inventory-list__content inventory-list__inventory-name-container">
                 <h3 className="inventory-list__mobile-header">
                   INVENTORY ITEM
                 </h3>
@@ -170,41 +179,43 @@ export default function WarehouseDetails() {
                 </div>
               </div>
 
-              <div className="inventory-list__content inventory-list__content--long">
+              <div className="inventory-list__content inventory-list__category-container">
                 <h3 className="inventory-list__mobile-header">CATEGORY</h3>
                 <p className="inventory-list__item-name--category">
                   {inventory.category}
                 </p>
               </div>
 
-              <div className="inventory-list__content inventory-list__content--box">
-                <h3 className="inventory-list__mobile-header">STATUS</h3>
-                <p
-                  className={`inventory-list__status ${
-                    inventory.status === "In Stock"
-                      ? "inventory-list__status--in-stock"
-                      : "inventory-list__status--out-of-stock"
-                  }`}
-                >
-                  {inventory.status}
-                </p>
+              <div className="inventory-list__content inventory-list__status-container">
+                <div className="inventory-list__status-icon-container">
+                  <h3 className="inventory-list__mobile-header">STATUS</h3>
+                  <p
+                    className={`inventory-list__status ${
+                      inventory.status === "In Stock"
+                        ? "inventory-list__status--in-stock"
+                        : "inventory-list__status--out-of-stock"
+                    }`}
+                  >
+                    {inventory.status}
+                  </p>
+                </div>
               </div>
 
-              <div className="inventory-list__content inventory-list__content--long">
+              <div className="inventory-list__content inventory-list__quantity-container">
                 <h3 className="inventory-list__mobile-header">QTY</h3>
                 <p className="inventory-list__item-name">
                   {inventory.quantity}
                 </p>
               </div>
 
-              <div className="inventory-list__action">
+              <div className="inventory-list__actions-container">
                 <img
                   src={DeleteButton}
                   alt="delete icon"
-                  className="inventory-list__icon"
+                  className="inventory-list__icon inventory-list__icon--delete"
                 />
                 <Link
-                  to={`/inventory/${id}/edit`}
+                  to={`/inventory/edit/${inventory.id}`}
                   className="inventory-list__link"
                 >
                   <img
