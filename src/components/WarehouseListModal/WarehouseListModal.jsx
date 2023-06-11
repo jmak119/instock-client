@@ -1,13 +1,13 @@
 import React from 'react';
-import './InventoryModal.scss';
+import '../../components/Inventorycomponent/InventoryModal.scss';
 import closeicon from '../../assets/icons/close-24px.svg';
 import axios from 'axios';
 import { apiUrl } from '../../utilities/api';
 
-const InventoryModal = ({ isOpen, onClose, inventoryName, inventoryId }) => {
+const WarehouseListModal = ({ isOpen, onClose, WarehouseListInventoryName, WarehouseListInventoryNameid }) => {
   const handleInventoryDelete = () => {
     axios
-      .delete(`${apiUrl}/api/inventories/${inventoryId}`)
+      .delete(`${apiUrl}/api/inventories/${WarehouseListInventoryNameid}`)
       .then((response) => {
         console.log('Inventory item deleted successfully');
         onClose(); // Close the modal
@@ -35,9 +35,9 @@ const InventoryModal = ({ isOpen, onClose, inventoryName, inventoryId }) => {
             <div className='inventory-modal-content__text-item'>
               <div className='inventory-modal-content__text-item--text'>
               
-                <h2 className='inventory-modal-content__text-item--header'>Delete {inventoryName} item</h2>
+                <h2 className='inventory-modal-content__text-item--header'>Delete {WarehouseListInventoryName} inventory item?</h2>
                 <p className='inventory-modal-content__text-item--paragraph'>
-                  Please confirm that you'd like to delete the {inventoryName} warehouse from the list. This action cannot be undone.
+                  Please confirm that you'd like to delete {WarehouseListInventoryName} from the inventory list. You won’t be able to undo this action.
                 </p>
               </div>
               <div className='inventory-modal__buttons'>
@@ -56,4 +56,4 @@ const InventoryModal = ({ isOpen, onClose, inventoryName, inventoryId }) => {
   );
 };
 
-export default InventoryModal;
+export default WarehouseListModal;
