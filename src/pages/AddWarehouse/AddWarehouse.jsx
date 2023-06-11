@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddWarehouse.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 
 export default function AddWarehouse() {
@@ -44,9 +44,7 @@ export default function AddWarehouse() {
       !warehouseDetails.contact_position ||
       !warehouseDetails.contact_phone ||
       !warehouseDetails.contact_email
-    ) 
-    {
-      alert("Please do not leave any fields blank");
+    ) {
       if (!warehouseDetails.warehouse_name) {
         setEmptyNameError(true);
       }
@@ -84,8 +82,9 @@ export default function AddWarehouse() {
     axios
       .post(`http://localhost:8080/api/warehouses`, warehouseDetails)
       .catch((error) => {
-        alert(error);
+        console.log(error);
       });
+    navigateTo("/warehouse", { state: { updatedItem: warehouseDetails } });
   };
 
   if (!warehouseDetails) {
@@ -403,9 +402,11 @@ export default function AddWarehouse() {
             </div>
           </div>
           <div className="edit-inventory__footer">
-            <button className="add-warehouse__button add-warehouse__button--cancel">
-              Cancel
-            </button>
+            <Link to={`/warehouse`} className="add-warehouse__cancel-link">
+              <button className="add-warehouse__button add-warehouse__button--cancel">
+                Cancel
+              </button>
+            </Link>
             <button
               type="submit"
               className="add-warehouse__button add-warehouse__button--Add"

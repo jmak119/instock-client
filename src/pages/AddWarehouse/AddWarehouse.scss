@@ -6,12 +6,8 @@
 .add-warehouse {
   background-color: $white;
   border-radius: 0.1875rem;
-  margin-top: 8.5rem;
-  margin-bottom: 6rem;
 
   @include tablet {
-    width: 44rem;
-    margin-top: 5.75rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,7 +15,6 @@
 
   @include desktop {
     width: 63.75rem;
-    margin-top: 5.75rem;
   }
 
   &__header {
@@ -42,7 +37,6 @@
   &__title {
     font-size: 1.75rem;
     line-height: 3.3125rem;
-    width: 251px;
     height: 36px;
     font-style: normal;
     font-weight: 600;
@@ -78,6 +72,7 @@
       }
     }
     @include tablet {
+      flex: 1;
     }
   }
 
@@ -115,7 +110,6 @@
     }
 
     @include tablet {
-      width: 260.5px;
       display: flex;
       flex-direction: row;
       justify-content: left;
@@ -131,6 +125,7 @@
     display: flex;
     flex-direction: column;
     @include tablet {
+      width: 100%;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -143,13 +138,16 @@
     }
   }
 
+  &__cancel-link {
+    text-decoration: none;
+  }
+
   &__button {
     width: 8.6875rem;
     height: 2.25rem;
     border-radius: 1.25rem;
     border: none;
     font-weight: 600;
-    width: 48%;
     &--cancel {
       background-color: $white;
       color: $slate;
@@ -157,7 +155,6 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      padding: 8px 16px;
       margin-right: 10px;
       justify-content: center;
       @include tablet {

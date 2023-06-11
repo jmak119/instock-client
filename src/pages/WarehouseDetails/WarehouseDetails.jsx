@@ -45,7 +45,6 @@ export default function WarehouseDetails() {
       .get(`${apiUrl}/api/inventories/warehouse/${id}`)
       .then((response) => {
         setInventoryList(response.data);
-        console.log(response.data);
       })
       .catch((err) => {
         console.error(err);
