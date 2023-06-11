@@ -35,12 +35,6 @@
       }
     }
   }
-
-  .BLOCK {
-    display: flex;
-    flex-direction: column;
-  }
-
   //    Text starts
 
   .warehouse-details__middle {
@@ -102,28 +96,59 @@
   }
 
   // Inventory header
-  .inventory-list-top {
-    background-color: $light-grey;
-    height: 40px;
-    padding-top: 0.5rem;
 
-    @include phone {
+  .inventory {
+    &__headings-container {
+      background-color: $light-grey;
+    }
+
+    &__headings {
       display: none;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 2.5rem;
+        height: 2rem;
+        align-items: center;
+      }
     }
 
-    &__head {
+    &__titles {
       display: flex;
-      justify-content: space-evenly;
-    }
-    &__row {
-      display: flex;
-      gap: 3rem;
+      flex-direction: row;
+      font-size: 0.75rem;
+      line-height: 1.125rem;
     }
 
-    &__item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &__titles-inventory-name {
+      width: 22%;
+    }
+
+    &__titles-category {
+      width: 18%;
+    }
+
+    &__titles-status {
+      width: 28%;
+    }
+
+    &__titles-qty {
+      width: 18%;
+    }
+
+    &__titles-actions {
+      width: 10%;
+    }
+
+    &__titles-actions {
+      justify-content: flex-end;
+    }
+
+    &__heading-icon {
+      width: 1rem;
+      margin-left: 4px;
     }
   }
 
