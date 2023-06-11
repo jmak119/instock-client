@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import "./Warehouse.scss";
 import sortIcon from "../../assets/icons/sort-24px.svg";
@@ -13,6 +13,9 @@ export default function Warehouse() {
   const navigateTo = useNavigate();
 
   const [warehouseList, setWarehouseList] = useState();
+  const location = useLocation();
+  const updatedItem = location.state?.updatedItem;
+
   useEffect(() => {
     axios
       .get(`${apiUrl}/api/warehouses`)
@@ -22,7 +25,7 @@ export default function Warehouse() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [updatedItem]);
   if (!warehouseList) {
     return <span>Loading...</span>;
   }

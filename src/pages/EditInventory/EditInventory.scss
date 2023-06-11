@@ -10,12 +10,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  width: 21.4375rem;
-
-  @include tablet {
-    width: 44rem;
-  }
-
   @include desktop {
     width: 63.75rem;
   }
@@ -40,6 +34,8 @@
   }
 
   &__form {
+    display: flex;
+    flex-direction: column;
     @include tablet {
       display: flex;
       flex-direction: column;
@@ -66,6 +62,7 @@
       margin: 24px 0;
       width: 351px;
       display: block;
+      flex: 1;
     }
 
     @include desktop {
@@ -175,7 +172,7 @@
   &__footer {
     padding: 1rem 1.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     background-color: $light-grey;
     @include tablet {
       justify-content: flex-end;
@@ -184,7 +181,8 @@
   }
 
   &__button {
-    width: 8.6875rem;
+    min-width: 7.5rem;
+    max-width: 8.6875rem;
     height: 2.25rem;
     border-radius: 1.25rem;
     border: none;
@@ -197,9 +195,7 @@
       background-color: $white;
       color: $slate;
       border: 0.0625rem solid $cloud;
-      @include tablet {
-        margin-right: 16px;
-      }
+      margin-right: 16px;
     }
     &--save {
       background-color: $instock-indigo;

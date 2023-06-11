@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &__header {
     display: flex;
     align-items: center;
@@ -41,7 +42,11 @@
     flex-direction: column;
     justify-content: space-between;
     &--border {
-      border: 0.0625rem solid $cloud;
+      border-bottom: 0.0625rem solid $cloud;
+      @include tablet {
+        border-bottom: none;
+        border-right: 0.0625rem solid $cloud;
+      }
     }
   }
   &__details-title {
@@ -120,8 +125,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: auto;
-    width: 44rem;
+
     @include desktop {
       width: 63.75rem;
     }
@@ -199,6 +203,10 @@
       display: flex;
       flex-direction: row;
       padding: 1rem 0;
+    }
+
+    &__cancel-link {
+      text-decoration: none;
     }
 
     &__button {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./EditWarehouse.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 
 export default function EditWarehouse() {
@@ -27,11 +27,10 @@ export default function EditWarehouse() {
     axios
       .get(`http://localhost:8080/api/warehouses/${warehouseID}`)
       .then((response) => {
-        console.log(response.data);
         setWarehouseDetails(response.data);
       })
       .catch((error) => {
-        alert(error);
+        console.log(error);
       });
   }, [warehouseID]);
 
@@ -62,10 +61,10 @@ export default function EditWarehouse() {
       warehouseDetails.contact_email === ""
     ) {
       setEmptyField(true);
-      alert("Please do not leave any fields blank");
+      return;
     }
     if (phoneNumberError || emailError) {
-      alert(`Please enter valid data"`);
+      return;
     }
     if (!warehouseDetails.warehouse_name) {
       setEmptyNameError(true);
@@ -105,9 +104,10 @@ export default function EditWarehouse() {
           warehouseDetails
         )
         .catch((error) => {
-          alert(error);
+          console.log(error);
         });
     }
+    navigateTo("/warehouse", { state: { updatedItem: warehouseDetails } });
   };
 
   if (!warehouseDetails) {
@@ -402,9 +402,11 @@ export default function EditWarehouse() {
             </div>
           </div>
           <div className="edit-inventory__footer">
-            <button className="edit-warehouse__button edit-warehouse__button--cancel">
-              Cancel
-            </button>
+            <Link to={`/warehouse`} className="edit-warehouse__cancel-link">
+              <button className="edit-warehouse__button edit-warehouse__button--cancel">
+                Cancel
+              </button>
+            </Link>
             <button
               type="submit"
               className="edit-warehouse__button edit-warehouse__button--save"
