@@ -4,7 +4,7 @@ import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function EditInventory() {
   const [inventoryItemDetails, setInventoryItemDetails] = useState(null);
@@ -117,14 +117,13 @@ export default function EditInventory() {
     }
 
     if (
-      inventoryItemDetails.quantity === 0 &&
-      inventoryItemDetails.status === "In Stock"
+      isNaN(Number(inventoryItemDetails.quantity)) ||
+      !inventoryItemDetails.quantity ||
+      (inventoryItemDetails.quantity === "0" &&
+        inventoryItemDetails.status === "In Stock")
     ) {
       setQuantityError(true);
-    }
-
-    if (isNaN(Number(inventoryItemDetails.quantity))) {
-      setQuantityError(true);
+      return;
     }
 
     axios
@@ -135,7 +134,7 @@ export default function EditInventory() {
       .catch((error) => {
         console.log(error);
       });
-    navigate("/inventory");
+    navigate("/inventory", { state: { updatedItem: inventoryItemDetails } });
   };
 
   if (!inventoryItemDetails || !currentWarehouse || !warehouseList) {
@@ -145,11 +144,13 @@ export default function EditInventory() {
   return (
     <div className="edit-inventory">
       <div className="edit-inventory__header">
-        <img
-          src={BackArrow}
-          alt="Back Arrow"
-          className="edit-inventory__back-arrow"
-        />
+        <Link to={`/inventory`} className="warehouse-details__back">
+          <img
+            src={BackArrow}
+            alt="Back Arrow"
+            className="edit-inventory__back-arrow"
+          />
+        </Link>
         <p className="edit-inventory__title">Edit Inventory Item</p>
       </div>
       <form className="edit-inventory__form" onSubmit={handleOnSubmit}>
@@ -275,6 +276,18 @@ export default function EditInventory() {
                       : "add-inventory__input add-inventory__input--quantity"
                   }`}
                 />
+                {quantityError && (
+                  <div className="add-inventory__error">
+                    <img
+                      src={ErrorIcon}
+                      alt="Error Icon"
+                      className="add-inventory__error-icon"
+                    />
+                    <p className="add-inventory__error-text">
+                      Quantity must be a number greater than 0
+                    </p>
+                  </div>
+                )}
               </label>
             )}
             <label className="edit-inventory__label">
@@ -298,9 +311,11 @@ export default function EditInventory() {
           </div>
         </div>
         <div className="edit-inventory__footer">
-          <button className="edit-inventory__button edit-inventory__button--cancel">
-            Cancel
-          </button>
+          <Link to={`/inventory`} className="edit-inventory__cancel-link">
+            <button className="edit-inventory__button edit-inventory__button--cancel">
+              Cancel
+            </button>
+          </Link>
           <button
             type="submit"
             className="edit-inventory__button edit-inventory__button--save"

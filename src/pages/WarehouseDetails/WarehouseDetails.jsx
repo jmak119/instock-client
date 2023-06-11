@@ -15,8 +15,6 @@ export default function WarehouseDetails() {
   const [inventoryList, setInventoryList] = useState();
   const { id } = useParams(); // Retrieve the 'id' parameter from the URL
 
-  console.log(id); // Log the retrieved ID to the console
-
   // useEffect for Details component
   useEffect(() => {
     axios
@@ -34,7 +32,6 @@ export default function WarehouseDetails() {
       .get(`${apiUrl}/api/inventories/warehouse/${id}`)
       .then((response) => {
         setInventoryList(response.data);
-        console.log(response.data); // Log the inventory list to the console
       })
       .catch((err) => {
         console.error(err);
@@ -44,9 +41,6 @@ export default function WarehouseDetails() {
   if (!warehouseDetails || !inventoryList) {
     return <span>Loading...</span>;
   }
-
-  console.log(warehouseDetails);
-  console.log(inventoryList);
 
   return (
     <div className="warehouse-details">

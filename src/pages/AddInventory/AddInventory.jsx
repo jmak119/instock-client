@@ -3,7 +3,7 @@ import "./AddInventory.scss";
 import BackArrow from "../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function AddInventory() {
   const [loading, setLoading] = useState(true);
@@ -106,20 +106,21 @@ export default function AddInventory() {
       inventoryItemDetails.status === "In Stock"
     ) {
       setQuantityError(true);
+      return;
     }
 
     if (isNaN(Number(inventoryItemDetails.quantity))) {
       setQuantityError(true);
+      return;
     }
-    console.log(inventoryItemDetails);
+
     axios
       .post(`http://localhost:8080/api/inventories/`, inventoryItemDetails)
       .catch((error) => {
         console.log(error);
-        console.log(JSON.stringify(inventoryItemDetails));
       });
 
-    navigate("/inventory");
+    navigate("/inventory", { state: { updatedItem: inventoryItemDetails } });
   };
 
   if (loading) {
@@ -131,11 +132,13 @@ export default function AddInventory() {
   return (
     <div className="add-inventory">
       <div className="add-inventory__header">
-        <img
-          src={BackArrow}
-          alt="Back Arrow"
-          className="add-inventory__back-arrow"
-        />
+        <Link to={`/inventory`} className="add-inventory__back-arrow-link">
+          <img
+            src={BackArrow}
+            alt="Back Arrow"
+            className="add-inventory__back-arrow"
+          />
+        </Link>
         <p className="add-inventory__title">Add New Inventory Item</p>
       </div>
       <form className="add-inventory__form" onSubmit={handleOnSubmit}>
@@ -335,9 +338,11 @@ export default function AddInventory() {
           </div>
         </div>
         <div className="add-inventory__footer">
-          <button className="add-inventory__button add-inventory__button--cancel">
-            Cancel
-          </button>
+          <Link to={`/inventory`} className="add-inventory__cancel-link">
+            <button className="add-inventory__button add-inventory__button--cancel">
+              Cancel
+            </button>
+          </Link>
           <button
             type="submit"
             className="add-inventory__button add-inventory__button--add"

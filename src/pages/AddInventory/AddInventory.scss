@@ -10,12 +10,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  width: 21.4375rem;
-
-  @include tablet {
-    width: 44rem;
-  }
-
   @include desktop {
     width: 63.75rem;
   }
@@ -35,6 +29,11 @@
     @include tablet {
       margin-bottom: 0;
     }
+  }
+
+  &__back-arrow-link {
+    display: flex;
+    align-items: center;
   }
 
   &__title {
@@ -68,7 +67,8 @@
     @include tablet {
       padding: 0 1.5rem;
       margin: 24px 0;
-      width: 351px;
+      min-width: 351px;
+      flex: 1;
       display: block;
     }
 
@@ -189,7 +189,7 @@
   &__footer {
     padding: 1rem 1.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     background-color: $light-grey;
     @include tablet {
       justify-content: flex-end;
@@ -198,7 +198,8 @@
   }
 
   &__button {
-    width: 8.6875rem;
+    min-width: 7.5rem;
+    max-width: 8.6875rem;
     height: 2.25rem;
     border-radius: 1.25rem;
     border: none;
@@ -211,9 +212,7 @@
       background-color: $white;
       color: $slate;
       border: 0.0625rem solid $cloud;
-      @include tablet {
-        margin-right: 16px;
-      }
+      margin-right: 16px;
     }
     &--add {
       background-color: $instock-indigo;
