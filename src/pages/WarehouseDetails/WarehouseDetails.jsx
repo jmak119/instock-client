@@ -20,6 +20,7 @@ export default function WarehouseDetails() {
   const { id } = useParams();
 
   const openModal = (inventoryId, inventoryName) => {
+    window.scrollTo({ top: 0 });
     setSelectedInventoryId(inventoryId);
     setSelectedInventoryName(inventoryName);
     setIsModalOpen(true);

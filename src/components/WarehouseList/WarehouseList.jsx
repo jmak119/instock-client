@@ -19,6 +19,7 @@ export default function WarehouseList({ warehouseList }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = (warehouseName, warehouseId) => {
+    window.scrollTo({ top: 0 });
     setModal(true);
     setIsModalOpen(true);
     setModalWarehouseName(warehouseName);

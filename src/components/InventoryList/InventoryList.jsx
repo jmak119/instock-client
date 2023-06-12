@@ -14,6 +14,7 @@ export default function InventoryList({ inventoryList, warehouseList }) {
   const [selectedInventoryId, setSelectedInventoryId] = useState(null);
 
   const openModal = (inventoryId) => {
+    window.scrollTo({ top: 0 });
     setSelectedInventoryId(inventoryId);
     setIsModalOpen(true);
   };
