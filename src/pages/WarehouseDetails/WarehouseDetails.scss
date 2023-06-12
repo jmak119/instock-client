@@ -119,10 +119,10 @@
     }
 
     &--container--contact-name {
+      padding-right: 24px;
       @include tablet {
         padding-left: 40px;
         border-left: 1px solid $cloud;
-        padding-right: 24px;
       }
     }
 
@@ -163,7 +163,7 @@
 
 // Inventory header
 
-.inventory {
+.warehouse-details-inventory {
   &__headings-container {
     background-color: $light-grey;
   }

@@ -85,6 +85,12 @@ export default function EditInventory() {
       );
       setCurrentWarehouse(selectedWarehouse);
     }
+    if (name === "status" && value === "Out of Stock") {
+      setInventoryItemDetails((prevDetails) => ({
+        ...prevDetails,
+        quantity: "0",
+      }));
+    }
     setInventoryItemDetails((prevDetails) => ({
       ...prevDetails,
       [name]: value,
@@ -134,7 +140,7 @@ export default function EditInventory() {
       .catch((error) => {
         console.log(error);
       });
-    navigate("/inventory", { state: { updatedItem: inventoryItemDetails } });
+    navigate(-1, { state: { updatedItem: inventoryItemDetails } });
   };
 
   if (!inventoryItemDetails || !currentWarehouse || !warehouseList) {
@@ -311,7 +317,7 @@ export default function EditInventory() {
           </div>
         </div>
         <div className="edit-inventory__footer">
-          <Link to={`/inventory`} className="edit-inventory__cancel-link">
+          <Link to={-1} className="edit-inventory__cancel-link">
             <button className="edit-inventory__button edit-inventory__button--cancel">
               Cancel
             </button>

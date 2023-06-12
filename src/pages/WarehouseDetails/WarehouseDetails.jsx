@@ -28,6 +28,18 @@ export default function WarehouseDetails() {
     setIsModalOpen(false);
   };
 
+  // useEffect for modal
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (isModalOpen) {
+      body.classList.add("active-inventory-modal");
+    } else {
+      body.classList.remove("active-inventory-modal");
+    }
+  }, [isModalOpen]);
+
+  // Modal end
+
   useEffect(() => {
     axios
       .get(`${apiUrl}/api/warehouses/${id}`)
@@ -118,51 +130,51 @@ export default function WarehouseDetails() {
         </div>
 
         <div className="warehouse-details__inventory-section">
-          <div className="inventory__headings-container">
-            <div className="inventory__headings">
-              <div className="inventory__titles inventory__titles-inventory-name">
-                <h4 className="inventory__heading inventory__heading-inventory-name">
+          <div className="warehouse-details-inventory__headings-container">
+            <div className="warehouse-details-inventory__headings">
+              <div className="warehouse-details-inventory__titles warehouse-details-inventory__titles-inventory-name">
+                <h4 className="warehouse-details-inventory__heading warehouse-details-inventory__heading-inventory-name">
                   INVENTORY NAME
                 </h4>
                 <img
                   src={sortIcon}
-                  className="inventory__heading-icon"
+                  className="warehouse-details-inventory__heading-icon"
                   alt="sorting icon"
                 />
               </div>
-              <div className="inventory__titles inventory__titles-category">
-                <h4 className="inventory__heading inventory__heading-category">
+              <div className="warehouse-details-inventory__titles warehouse-details-inventory__titles-category">
+                <h4 className="warehouse-details-inventory__heading warehouse-details-inventory__heading-category">
                   CATEGORY
                 </h4>
                 <img
                   src={sortIcon}
-                  className="inventory__heading-icon"
+                  className="warehouse-details-inventory__heading-icon"
                   alt="sorting icon"
                 />
               </div>
-              <div className="inventory__titles inventory__titles-status">
-                <h4 className="inventory__heading inventory__heading-status">
+              <div className="warehouse-details-inventory__titles warehouse-details-inventory__titles-status">
+                <h4 className="warehouse-details-inventory__heading warehouse-details-inventory__heading-status">
                   STATUS
                 </h4>
                 <img
                   src={sortIcon}
-                  className="inventory__heading-icon"
+                  className="warehouse-details-inventory__heading-icon"
                   alt="sorting icon"
                 />
               </div>
-              <div className="inventory__titles inventory__titles-qty">
-                <h4 className="inventory__heading inventory__heading-qty">
+              <div className="warehouse-details-inventory__titles warehouse-details-inventory__titles-qty">
+                <h4 className="warehouse-details-inventory__heading warehouse-details-inventory__heading-qty">
                   QUANTITY
                 </h4>
                 <img
                   src={sortIcon}
-                  className="inventory__heading-icon"
+                  className="warehouse-details-inventory__heading-icon"
                   alt="sorting icon"
                 />
               </div>
 
-              <div className="inventory__titles inventory__titles-actions">
-                <h4 className="inventory__heading inventory__heading-actions">
+              <div className="warehouse-details-inventory__titles warehouse-details-inventory__titles-actions">
+                <h4 className="warehouse-details-inventory__heading warehouse-details-inventory__heading-actions">
                   ACTIONS
                 </h4>
               </div>
@@ -176,12 +188,17 @@ export default function WarehouseDetails() {
                   <h3 className="inventory-list__mobile-header">
                     INVENTORY ITEM
                   </h3>
-                  <div className="inventory-list__item-box">
-                    <p className="inventory-list__item-name">
-                      {inventory.item_name}
-                    </p>
-                    <img src={arrowside} alt="arrow icon" />
-                  </div>
+                  <Link
+                    className="item-list__link"
+                    to={`/inventory/details/${inventory.id}`}
+                  >
+                    <div className="inventory-list__item-box">
+                      <p className="inventory-list__item-name">
+                        {inventory.item_name}
+                      </p>
+                      <img src={arrowside} alt="arrow icon" />
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="inventory-list__content inventory-list__category-container">
