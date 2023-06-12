@@ -4,171 +4,168 @@
 @use "../../styles/partials/variables" as *;
 
 .item-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $white;
+
+  @include tablet {
+    flex-direction: column;
+  }
+
+  &__container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin: 0 auto;
-    background-color: $white;
+    flex-wrap: wrap;
+    border-top: 0.0313rem solid $cloud;
+    padding: 1rem;
+    color: $instock-black;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    height: 14.75rem;
+    position: relative;
+    text-overflow: clip;
 
     @include tablet {
-        flex-direction: column;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      height: 4.75rem;
+      align-items: center;
     }
 
-    &__container {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        border-top: .0313rem solid $cloud;
-        padding: 1rem;
-        color: $instock-black;
-        font-size: .6875rem;
-        line-height: 1rem;
-        height: 14.75rem;
-        position: relative;
-        text-overflow: clip;
+    @include desktop {
+      &:hover {
+        background-color: $light-grey;
+      }
+    }
+  }
 
-        @include tablet {
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            height: 4.75rem;
-            align-items: center;
-        }
+  &__info-heading {
+    color: $slate;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding-bottom: 0.25rem;
 
-        @include desktop {
-            &:hover {
-                background-color: $light-grey;
-            }
-        }
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+
+  &__inventory-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__inventory-container,
+  &__category-container,
+  &__status-container,
+  &__qty-container,
+  &__warehouse-container {
+    padding-bottom: 1rem;
+    width: 50%;
+
+    @include tablet {
+      padding-bottom: 0;
+    }
+  }
+
+  &__inventory-container {
+    width: 22%;
+  }
+
+  &__category-container,
+  &__status-container,
+  &__warehouse-container {
+    @include tablet {
+      width: 18%;
+    }
+  }
+
+  &__qty-container {
+    @include tablet {
+      width: 10%;
+    }
+  }
+
+  &__item-name {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $instock-indigo;
+    font-weight: 600;
+  }
+
+  &__icon-arrow {
+    height: 1rem;
+  }
+
+  &__category-container {
+    padding-right: 1rem;
+    padding-bottom: 5rem;
+
+    @include tablet {
+      padding: 0;
+    }
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    padding-left: 0.4rem;
+    line-height: 1.125rem;
+    text-transform: uppercase;
+
+    &--in-stock {
+      color: #158463;
+      background: rgba(21, 132, 99, 0.07);
+      width: 3.5625rem;
+      height: 1.25rem;
+      border-radius: 1.25rem;
     }
 
-    &__info-heading {
-        color: $slate;
-        font-size: .6875rem;
-        font-weight: 600;
-        padding-bottom: 0.25rem;
-
-        @include tablet {
-            display: none;
-        }
+    &--out-of-stock {
+      color: #c94515;
+      background: rgba(201, 69, 21, 0.07);
+      width: 5.1875rem;
+      height: 1.25rem;
+      border-radius: 1.25rem;
     }
+  }
 
-    &__item {
-        display: flex;
-        flex-direction: row;
-        font-size: 0.75rem;
-        line-height: 1.125rem;
+  &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 1.5rem;
+
+    left: 1rem;
+    right: 1rem;
+
+    @include tablet {
+      width: 10%;
+      justify-content: flex-end;
+      position: relative;
+      bottom: 0rem;
+      left: 0.25rem;
+      gap: 1rem;
     }
+  }
 
-    &__inventory-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__inventory-container,
-    &__category-container,
-    &__status-container,
-    &__qty-container,
-    &__warehouse-container {
-        padding-bottom: 1rem;
-        width: 50%;
-
-        @include tablet {
-            padding-bottom: 0;
-        }
-    }
-
-    &__inventory-container {
-        width: 22%;
-    }
-
-    &__category-container,
-    &__status-container,
-    &__warehouse-container {
-        @include tablet {
-            width: 18%;
-        }
-    }
-
-    &__qty-container {
-        @include tablet {
-            width: 10%;
-        }
-    }
-
-    &__item-name {
-        display: flex;
-        flex-direction: row;
-    }
-
-    &__link {
-        text-decoration: none;
-        color: $instock-indigo;
-        font-weight: 600;
-    }
-
-    &__icon-arrow {
-        height: 1rem;
-    }
-
-    &__category-container {
-        padding-right: 1rem;
-        padding-bottom: 5rem;
-
-        @include tablet {
-            padding: 0;
-        }
-    }
-
-    &__status {
-        display: flex;
-        align-items: center;
-        padding-left: 0.4rem;
-        line-height: 1.125rem;
-        text-transform: uppercase;
-
-        &--in-stock {
-            color: #158463;
-            background: rgba(21, 132, 99, 0.07);
-            width: 3.5625rem;
-            height: 1.25rem;
-            border-radius: 1.25rem;
-        }
-
-        &--out-of-stock {
-            color: #C94515;
-            background: rgba(201, 69, 21, 0.07);
-            width: 5.1875rem;
-            height: 1.25rem;
-            border-radius: 1.25rem;
-        }
-    }
-        
-
-    
-
-    &__buttons-container {
-        display: flex;
-        justify-content: space-between;
-        position: absolute;
-        bottom: 1.5rem;
-
-        left: 1rem;
-        right: 1rem;
-
-        @include tablet {
-            width: 10%;
-            justify-content: flex-end;
-            position: relative;
-            bottom: 0rem;
-            left: 0.25rem;
-            gap: 1rem;
-        }
-    }
-
-    &__button {
-        width: 1.5rem;
-        cursor: pointer;
-    }
+  &__button {
+    width: 1.5rem;
+    cursor: pointer;
+  }
 }
